@@ -5,8 +5,6 @@ const Input = (props) => {
   return <StInput {...props} />;
 };
 
-export default Input;
-
 const StInput = styled.input`
   box-sizing: border-box;
   height: 46px;
@@ -17,3 +15,4 @@ const StInput = styled.input`
   font-size: 14px;
   border: 1px solid #eee;
 `;
+export default Input;
