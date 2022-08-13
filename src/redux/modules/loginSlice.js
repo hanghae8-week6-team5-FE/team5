@@ -3,6 +3,8 @@ import axios from "axios";
 
 const initialState = {
   checkusers: [],
+  loading: false,
+  error: null,
 };
 
 export const __postCheckUser = createAsyncThunk(

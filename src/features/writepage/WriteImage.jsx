@@ -1,48 +1,93 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import Text from "../../ele/Text";
 import Input from "../../ele/Input";
 import Button from "../../ele/Button";
+import s3Upload from "react-aws-s3";
+
+window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const WriteImage = () => {
+  const imgvalue = useRef(null);
   const [write, Setwrite] = useState({
     title: "",
     images: "",
     category: "",
     content: "",
   });
+
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     Setwrite({ ...write, [name]: value });
-    console.log(write);
+  };
+  const onChangeImg = (event) => {
+    const imgFile = event.target.files[0];
+    const imgFile_name = event.target.files[0].name;
+    const { name } = event.target;
+    const imageUrl = URL.createObjectURL(imgFile);
+    Setwrite({ ...write, [name]: imageUrl });
+    const config = {
+      accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+      bucketName: process.env.REACT_APP_BUCKET_NAME,
+      region: process.env.REACT_APP_REGION,
+    };
+    //aws 서버에 등록함(DB저장 X)
+    const s3Client = new s3Upload(config);
+    s3Client.uploadFile(imgFile, imgFile_name).then(async (data) => {
+      if (data.status === 204) {
+        let imgUrl = data.location;
+        console.log(imgUrl);
+
+        //초기화
+        // setState(state);
+        // setFiles(null);
+      }
+    });
   };
   const onSubmitHandler = (event) => {
     event.preventDefault();
   };
   return (
-    <form onSubmit={onSubmitHandler}>
-      <Stwrite>
-        <Stselect onChange={onChangeHandler} name="category">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </Stselect>
-        <Input onChange={onChangeHandler} name="title"></Input>
-        <Stimgbox>
-          <Stimg>img</Stimg>
-          <Input onChange={onChangeHandler} name="img" type="file"></Input>
-        </Stimgbox>
-        <StFormBox>
-          <Stform>
-            <StTextarea onChange={onChangeHandler} name="content"></StTextarea>
-            <Button>댓글작성</Button>
-          </Stform>
-        </StFormBox>
-      </Stwrite>
-    </form>
+    <div>
+      <form onSubmit={onSubmitHandler}>
+        <Stwrite>
+          <Stselect onChange={onChangeHandler} name="category">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </Stselect>
+          <Input onChange={onChangeHandler} name="title"></Input>
+          <Stimgbox>
+            <Stimg>
+              <img src={write.images} alt="등록한이미지"></img>
+            </Stimg>
+            <div>
+              <Input
+                accept="image/*"
+                onChange={onChangeImg}
+                name="images"
+                type="file"
+                id="foodImage"
+                Ref={imgvalue}
+              />
+            </div>
+          </Stimgbox>
+          <StFormBox>
+            <Stform>
+              <StTextarea
+                onChange={onChangeHandler}
+                name="content"
+              ></StTextarea>
+              <Button>댓글작성</Button>
+            </Stform>
+          </StFormBox>
+        </Stwrite>
+      </form>
+    </div>
   );
 };
 const Stwrite = styled.div`
@@ -67,6 +112,10 @@ const Stimg = styled.div`
   height: 200px;
   border: 1px solid black;
   margin-right: 50px;
+  & > img {
+    width: 350px;
+    height: 200px;
+  }
 `;
 const StFormBox = styled.div`
   width: 100vw;
