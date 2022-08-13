@@ -1,14 +1,16 @@
 import React, { useRef } from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import Text from "../../ele/Text";
 import Input from "../../ele/Input";
 import Button from "../../ele/Button";
+import { __postWrite } from "../../redux/modules/writeSlice";
+import { useDispatch } from "react-redux";
 import s3Upload from "react-aws-s3";
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const WriteImage = () => {
+  const dispatch = useDispatch();
   const imgvalue = useRef(null);
   const [write, Setwrite] = useState({
     title: "",
@@ -23,10 +25,15 @@ const WriteImage = () => {
   };
   const onChangeImg = (event) => {
     const imgFile = event.target.files[0];
-    const imgFile_name = event.target.files[0].name;
     const { name } = event.target;
     const imageUrl = URL.createObjectURL(imgFile);
     Setwrite({ ...write, [name]: imageUrl });
+  };
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+    let file = imgvalue.current.files[0];
+    let newFileName = imgvalue.current.files[0].name;
+    console.log(file, newFileName);
     const config = {
       accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
       secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
@@ -35,19 +42,20 @@ const WriteImage = () => {
     };
     //aws 서버에 등록함(DB저장 X)
     const s3Client = new s3Upload(config);
-    s3Client.uploadFile(imgFile, imgFile_name).then(async (data) => {
+    s3Client.uploadFile(file, newFileName).then(async (data) => {
       if (data.status === 204) {
         let imgUrl = data.location;
         console.log(imgUrl);
-
-        //초기화
-        // setState(state);
-        // setFiles(null);
+        const newstate = { ...write, images: imgUrl };
+        dispatch(__postWrite(newstate));
+        Setwrite({
+          title: "",
+          images: "",
+          category: "",
+          content: "",
+        });
       }
     });
-  };
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
   };
   return (
     <div>
@@ -72,7 +80,7 @@ const WriteImage = () => {
                 name="images"
                 type="file"
                 id="foodImage"
-                Ref={imgvalue}
+                ref={imgvalue}
               />
             </div>
           </Stimgbox>

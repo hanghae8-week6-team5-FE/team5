@@ -24,7 +24,7 @@ export const SignupSlice = createSlice({
   extraReducers: {
     [__postUser.pending]: (state) => {},
     [__postUser.fulfilled]: (state, action) => {
-      state.todos.push(action.payload);
+      state.users.push(action.payload);
     },
   },
 });

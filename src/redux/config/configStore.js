@@ -1,6 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import login from "../modules/loginSlice";
-import sign from "../modules/signupSlice";
+import sign from "../modules/signSlice";
 import write from "../modules/writeSlice";
 
 const store = configureStore({

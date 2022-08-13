@@ -1,9 +1,9 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled, { css } from "styled-components";
 
-const Input = (props) => {
-  return <StInput {...props} />;
-};
+const Input = forwardRef((props, ref) => {
+  return <StInput ref={ref} {...props} />;
+});
 
 const StInput = styled.input`
   box-sizing: border-box;

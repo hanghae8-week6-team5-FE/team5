@@ -8,6 +8,7 @@ const initialState = {
 export const __postWrite = createAsyncThunk(
   "users/__postWrite",
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
       const data = await axios.post(`http://localhost:3001/write`, payload);
       return thunkAPI.fulfillWithValue(data.data);
@@ -17,17 +18,17 @@ export const __postWrite = createAsyncThunk(
   }
 );
 
-export const SignupSlice = createSlice({
+export const WriteSlice = createSlice({
   name: "write",
   initialState,
   reducers: {},
   extraReducers: {
     [__postWrite.pending]: (state) => {},
     [__postWrite.fulfilled]: (state, action) => {
-      state.todos.push(action.payload);
+      state.write.push(action.payload);
     },
   },
 });
 
-export const {} = SignupSlice.actions;
-export default SignupSlice.reducer;
+export const {} = WriteSlice.actions;
+export default WriteSlice.reducer;
