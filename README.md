@@ -21,3 +21,49 @@
 - 카테고리별 필터
 
 ## 🛠 폴더구성
+**[폴더구조]**
+* shared
+  * Router.jsx
+  
+* pages  
+  * Detail.jsx
+  * Login.jsx
+  * Main.jsx
+  * Sign.jsx
+  * WritePage.jsx
+  
+* components
+  * Header.jsx
+  * Layout.jsx
+  
+* ele
+  * Button.jsx
+  * Input.jsx
+  * Text.jsx
+  
+* features
+  * detail
+    * CommentForm.jsx
+    * DetailForm.jsx
+  * login
+    * LoginForm.jsx
+  * main
+    * MainList.jsx
+  * sign
+    * SignForm.jsx
+  * writepage
+    * WriteAdd.jsx
+    * WriteForm.jsx
+    
+* pages
+  * Detail.jsx
+  * Login.jsx
+  * Main.jsx
+  * Sign.jsx
+  * WritePage.jsx
+
+* redux
+  * modules
+    * configs
+      * configStore.js
+      
