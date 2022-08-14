@@ -12,7 +12,6 @@ export default Button;
 
 const StButton = styled.button`
   border: 1px solid #eee;
-  /* background-color: #60c1df; */
   height: 46px;
   border-radius: 8px;
   color: white;

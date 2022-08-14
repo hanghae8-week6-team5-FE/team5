@@ -3,7 +3,7 @@ import axios from "axios";
 import instance from "../../api/Request";
 
 const initialState = {
-  checkusers: [],
+  checkusers: [], //아이디,ok값저장
   loading: false,
   error: null,
 };
@@ -24,18 +24,7 @@ export const __postCheckUser = createAsyncThunk(
     }
   }
 );
-
-// export const __login = createAsyncThunk(
-//   "log/LOGIN_LOG",
-//   async (payload, thunkAPI) => {
-//     const response = await instance.post("/login", payload);
-//     // 토큰 localstorge 저장하기
-//     localStorage.setItem("token", response.data.token);
-//     // 로그인 상태 값 {true / false}
-//     return response.data;
-//   }
-// );
-
+//슬라이스영역
 export const LoginSlice = createSlice({
   name: "checkuser",
   initialState,
@@ -50,11 +39,11 @@ export const LoginSlice = createSlice({
     },
     [__postCheckUser.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.checkusers = action.payload;
+      // window.alert("로그인성공입니다");
     },
     [__postCheckUser.rejected]: (state, action) => {
       state.isLoading = false;
-      state.error = action.payload;
+      // window.alert("로그인실패입니다");
     },
   },
 });

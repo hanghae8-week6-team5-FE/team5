@@ -21,7 +21,7 @@ const LoginForm = () => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     dispatch(__postCheckUser(login));
-    window.alert("로그인성공했습니다!");
+    // window.alert("로그인성공했습니다!");
     // navigate("/");
   };
   useEffect(() => {
