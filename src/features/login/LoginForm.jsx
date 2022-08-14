@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Input from "../../ele/Input";
 import Button from "../../ele/Button";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { __postCheckUser } from "../../redux/modules/loginSlice.js";
+
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const [formstate, setFormState] = useState(false); //버튼잠금
   const [login, Setlogin] = useState({
     loginId: "",
     password: "",
@@ -15,7 +20,17 @@ const LoginForm = () => {
   };
   const onSubmitHandler = (event) => {
     event.preventDefault();
+    dispatch(__postCheckUser(login));
+    window.alert("로그인성공했습니다!");
+    // navigate("/");
   };
+  useEffect(() => {
+    if (login.loginId !== "" && login.password !== "") {
+      setFormState(true);
+    } else {
+      setFormState(false);
+    }
+  }, [login]);
   return (
     <Stlogin>
       <form onSubmit={onSubmitHandler}>
@@ -27,7 +42,9 @@ const LoginForm = () => {
           onChange={onChangeHandler}
           type="password"
         ></Input>
-        <Button>로그인</Button>
+        <Button bgColor="#FE531F" disabled={!formstate}>
+          로그인
+        </Button>
       </form>
       <Button
         onClick={() => {

@@ -3,13 +3,16 @@ import Input from "../../ele/Input";
 import Button from "../../ele/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { __postUser } from "../../redux/modules/signSlice";
 
 const SignForm = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [sign, Setsign] = useState({
     loginId: "",
     password: "",
-    confrim: "",
+    confirm: "",
   });
   const [nickname, Setnickname] = useState(false);
   const [password, Setpassword] = useState(false);
@@ -43,19 +46,21 @@ const SignForm = () => {
   };
   const onSumitHandler = (event) => {
     event.preventDefault();
+
     if (
       sign.loginId.trim() === "" ||
       sign.password.trim() === "" ||
-      sign.confrim.trim() === ""
+      sign.confirm.trim() === ""
     ) {
       return alert("모든 항목을 입력해주세요.");
     }
     if (
       is_nickname(sign.loginId) &&
       passwordCheck(sign.password) &&
-      sign.password === sign.confrim
+      sign.password === sign.confirm
     ) {
       // dispatch(__postUser(signData));
+      dispatch(__postUser(sign));
       window.alert("회원가입성공했습니다~");
       navigate("/login");
     } else {
@@ -91,10 +96,10 @@ const SignForm = () => {
         <label>비밀번호체크 </label>
         <Input
           type="password"
-          name="confrim"
+          name="confirm"
           onChange={onchangeHandler}
         ></Input>
-        {sign.password !== sign.confrim ? (
+        {sign.password !== sign.confirm ? (
           <div style={{ color: "red" }}>비밀번호가 틀립니다</div>
         ) : null}
 
