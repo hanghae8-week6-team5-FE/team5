@@ -41,8 +41,8 @@ function Detail() {
               <StyledBtn>삭제하기</StyledBtn>
             </StyledInputBox_Li>
             <StyledInputBox_Li>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. In blanditiis culpa mollitia, numquam repudiandae,
-              modi perferendis quam quidem molestiae exercitationem incidunt facilis minima velit rerum voluptas magnam
+              committest Lorem ipsum dolor sit amet, consectetur adipisicing elit. In blanditiis culpa mollitia, numquam repudiandae,
+              modi perferendis quam  quidem molestiae exercitationem incidunt facilis minima velit rerum voluptas magnam
               quod. Odit, assumenda.
               <StyledBtn>수정하기</StyledBtn>
               <StyledBtn>삭제하기</StyledBtn>
