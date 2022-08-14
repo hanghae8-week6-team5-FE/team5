@@ -20,28 +20,28 @@
 - 좋아요 / 댓글
 - 카테고리별 필터
 
-## 🛠 폴더구성
-**[폴더구조]**
-* shared
+## 🛠 폴더 구성
+
+* **shared**
   * Router.jsx
   
-* pages  
+* **pages**  
   * Detail.jsx
   * Login.jsx
   * Main.jsx
   * Sign.jsx
   * WritePage.jsx
   
-* components
+* **components**
   * Header.jsx
   * Layout.jsx
   
-* ele
+* **ele**
   * Button.jsx
   * Input.jsx
   * Text.jsx
   
-* features
+* **features**
   * detail
     * CommentForm.jsx
     * DetailForm.jsx
@@ -55,14 +55,14 @@
     * WriteAdd.jsx
     * WriteForm.jsx
     
-* pages
+* **pages**
   * Detail.jsx
   * Login.jsx
   * Main.jsx
   * Sign.jsx
   * WritePage.jsx
 
-* redux
+* **redux**
   * modules
     * configs
       * configStore.js
