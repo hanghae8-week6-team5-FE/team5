@@ -19,7 +19,7 @@ function Detail() {
               <StyledTitleH2>피자 </StyledTitleH2>
               <p>피자 설명을 기재.
                 피자 설명! 피자가 너무 맛있어요 냐미냐미 어쩌구 저쩌구 dolor sit amet consectetur adipisicing elit. Iure repellendus libero blanditiis inventore.
-                Aspernatur sit rerum perspiciatis maxime amet libero, molestiae nam cum adipisci alias inventore soluta
+                Aspernatur sit rddderum perspiciatis maxime amet libero, molestiae nam cum adipisci alias inventore soluta
                 ipsum magni? Voluptate.</p>
             </StyledTitle>
             <div>
