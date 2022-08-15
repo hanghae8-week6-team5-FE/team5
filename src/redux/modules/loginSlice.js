@@ -16,14 +16,11 @@ export const __postCheckUser = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const data = await axios.post(
-        `http://shshinkitec.shop/api/login`,
-        payload
-      );
+      const data = await instance.post(`/login`, payload);
       const token = data.data.token;
       localStorage.setItem("token", token); //토큰 로컬 저장하는부분
       console.log(jwt_decode(token));
-      setToken(token);
+
       const userId = jwt_decode(token);
 
       return thunkAPI.fulfillWithValue(data.data);
@@ -52,6 +49,7 @@ export const LoginSlice = createSlice({
     },
     [__postCheckUser.rejected]: (state, action) => {
       state.isLoading = false;
+      console.log(action.payload.response.data);
       // window.alert("로그인실패입니다");
     },
   },

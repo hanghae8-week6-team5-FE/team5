@@ -6,6 +6,7 @@ import { __GetList } from "../../redux/modules/mainSlice";
 const MainList = (props) => {
   const dispatch = useDispatch();
   const { lists } = useSelector((state) => state.main);
+  console.log(lists);
 
   useEffect(() => {
     dispatch(__GetList());
@@ -16,7 +17,6 @@ const MainList = (props) => {
       {lists.map((elem) => (
         <Stflexbox key={elem.postId}>
           <p>{elem.title}</p>
-          {/* <img src="${elem.images}"></img> */}
           <StImg imgUrl={elem.images}></StImg>
           <div></div>
         </Stflexbox>

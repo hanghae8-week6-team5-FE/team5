@@ -25,6 +25,7 @@ export const MainSlice = createSlice({
   reducers: {},
   extraReducers: {
     [__GetList.fulfilled]: (state, action) => {
+      console.log(state.payload);
       state.isLoading = false;
       state.lists = action.payload;
     },
