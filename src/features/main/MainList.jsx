@@ -5,6 +5,7 @@ import axios from "axios";
 import { fetchPosts } from "../../redux/modules/mainSlice";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import MainCategory from "./MainCategory";
 
 const MainList = () => {
   const dispatch = useDispatch();
@@ -96,6 +97,7 @@ const MainList = () => {
             );
           })}
       </div>
+      <MainCategory />
     </div>
   );
 

@@ -128,6 +128,5 @@ const mainSlice = createSlice({
     //     });
   },
 });
-
-export default mainSlice;
-export const mainReducer = mainSlice.reducer;
+export const {} = mainSlice.actions;
+export default mainSlice.reducer;
