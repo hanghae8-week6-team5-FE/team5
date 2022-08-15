@@ -1,0 +1,21 @@
+{
+  "write": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "3113131313",
+      "images": "https://baeldal-bucket.s3-ap-northeast-2.amazonaws.com/React3.jpeg",
+      "category": "3",
+      "content": "21214214214421",
+      "id": 2
+    }
+  ],
+  "user": {
+    "loginId": "dkwntnf99",
+    "password": "rlaalstn1234",
+    "confirm": "rlaalstn1234"
+  }
+}
