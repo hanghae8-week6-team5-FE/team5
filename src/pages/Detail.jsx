@@ -138,10 +138,3 @@ color: grey;
 border: solid 2px rgb(144, 200, 247);
 }
 `;
-=======
-import React from "react";
-import Layout from "../components/Layout";
-const Detail = () => {
-  return <Layout></Layout>;
-};
-export default Detail;
