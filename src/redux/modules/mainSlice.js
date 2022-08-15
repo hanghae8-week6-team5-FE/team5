@@ -1,132 +1,38 @@
-import { createSlice, createAsyncThunk, isRejected } from "@reduxjs/toolkit";
 import axios from "axios";
-
-const url_params = process.env.REACT_APP_url;
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import instance from "../../api/Request";
 
 const initialState = {
-  loading: false,
-  posts: [],
-  error: "",
+  lists: [],
+  isLoading: false,
 };
 
-export const fetchPosts = createAsyncThunk(
-  "post/fetchPost",
-  async (thunkApi) => {
+export const __GetList = createAsyncThunk(
+  "users/__CheckeUserId",
+  async (payload, thunkAPI) => {
     try {
-      const res = await axios.get(`${url_params}/post`);
-      return res.data;
+      const data = await axios.get(`http://shshinkitec.shop/api/post`);
+      return thunkAPI.fulfillWithValue(data.data.result);
     } catch (error) {
-      return error.message;
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
-console.log(fetchPosts);
 
-// export const addPost = createAsyncThunk("post/addPost", async (logData) => {
-//   try {
-//     const response = await axios.post(`${url_params}/post`, logData);
-//     return response.data;
-//   } catch (error) {
-//     return error.message;
-//   }
-// });
-
-// export const deletePost = createAsyncThunk(
-//   "delete/deletePost",
-//   async (postId) => {
-//     try {
-//       const response = await axios.delete(`${url_params}/post/${postId}`);
-//       return postId;
-//     } catch (error) {
-//       return error.message;
-//     }
-//   }
-// );
-
-// export const updatePost = createAsyncThunk(
-//   "put/updatePost",
-//   async ({ logData, postId }) => {
-//     try {
-//       const response = await axios.put(
-//         `${url_params}/post/${postId}`,
-//         logData
-//       );
-//       return { postId, logData };
-//     } catch (error) {
-//       return error.message;
-//     }
-//   }
-// );
-
-const mainSlice = createSlice({
-  name: "posts",
+export const MainSlice = createSlice({
+  name: "main",
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
-    //!보여주기
-    builder.addCase(fetchPosts.pending, (state) => {
-      state.loading = true;
-    });
-    builder.addCase(fetchPosts.fulfilled, (state, action) => {
-      console.log(action.payload);
-      state.loading = false;
-      state.posts = action.payload;
-      state.error = "";
-    });
-    builder.addCase(fetchPosts.rejected, (state, action) => {
-      state.loading = false;
-      state.posts = [];
-      state.error = action.error.message;
-    });
-    //     // //!가져오기
-    //     // builder.addCase(addPost.pending, (state) => {
-    //     //   state.loading = true;
-    //     // });
-    //     // builder.addCase(addPost.fulfilled, (state, action) => {
-    //     //   state.loading = false;
-    //     //   state.posts = [...state.posts, action.payload];
-    //     //   state.error = "";
-    //     // });
-    //     // builder.addCase(addPost.rejected, (state, action) => {
-    //     //   state.loading = false;
-    //     //   state.posts = [];
-    //     //   state.error = action.error.message;
-    //     // });
-    //     // //!삭제하기
-    //     // builder.addCase(deletePost.pending, (state) => {
-    //     //   state.loading = true;
-    //     // });
-    //     // builder.addCase(deletePost.fulfilled, (state, action) => {
-    //     //   state.loading = false;
-    //     //   state.posts = state.posts.filter((post) => post.id != action.payload);
-    //     //   state.error = "";
-    //     // });
-    //     // builder.addCase(deletePost.rejected, (state, action) => {
-    //     //   state.loading = false;
-    //     //   state.posts = [];
-    //     //   state.error = action.error.message;
-    //     // });
-    //     // //!수정하기
-    //     // builder.addCase(updatePost.pending, (state) => {
-    //     //   state.loading = true;
-    //     // });
-    //     // builder.addCase(updatePost.fulfilled, (state, action) => {
-    //     //   state.loading = false;
-    //     //   state.posts = state.posts.map((post) => {
-    //     //     if (post.id === action.payload.postId) {
-    //     //       return action.payload.logData;
-    //     //     } else {
-    //     //       return post;
-    //     //     }
-    //     //   });
-    //     //   state.error = "";
-    //     // });
-    //     // builder.addCase(updatePost.rejected, (state, action) => {
-    //     //   state.loading = false;
-    //     //   state.posts = [];
-    //     //   state.error = action.error.message;
-    //     });
+  extraReducers: {
+    [__GetList.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.lists = action.payload;
+    },
+    [__GetList.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
   },
 });
-export const {} = mainSlice.actions;
-export default mainSlice.reducer;
+
+export const {} = MainSlice.actions;
+export default MainSlice.reducer;
