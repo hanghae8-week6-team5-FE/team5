@@ -14,13 +14,14 @@ const MainList = (props) => {
   console.log(lists);
   return (
     <Stflexbox>
-      {lists.map((elem) => (
-        <Stflexbox key={elem.postId}>
-          <p>{elem.title}</p>
-          <StImg imgUrl={elem.images}></StImg>
-          <div></div>
-        </Stflexbox>
-      ))}
+      {lists &&
+        lists.map((elem) => (
+          <Stflexbox key={elem.postId}>
+            <p>{elem.title}</p>
+            <StImg imgUrl={elem.images}></StImg>
+            <div></div>
+          </Stflexbox>
+        ))}
     </Stflexbox>
   );
 };
