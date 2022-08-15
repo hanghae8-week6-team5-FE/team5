@@ -29,9 +29,11 @@ export const __postUser = createAsyncThunk(
 export const __CheckeUserId = createAsyncThunk(
   "users/__CheckeUserId",
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
-      const data = await axios.get(
-        `http://localhost:3001/user/?loginID=${payload}`
+      const data = await axios.post(
+        `http://shshinkitec.shop/api/idCheck`,
+        payload
       );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {

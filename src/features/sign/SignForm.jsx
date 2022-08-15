@@ -37,7 +37,7 @@ const SignForm = () => {
     }
   };
   const CheckIdClickHandler = () => {
-    dispatch(__CheckeUserId(sign.loginId));
+    dispatch(__CheckeUserId(sign));
   };
   const onSumitHandler = (event) => {
     event.preventDefault();

@@ -2,21 +2,21 @@ import axios from "axios";
 
 const instance = axios.create({
   baseURL: "http://shshinkitec.shop/api",
-  // headers: {
-  //   "Content-Type": "application/json",
-  //   Authorization: `Bearer ${localStorage.getItem("token")}`,
-  // },
   headers: {
-    "content-type": "application/json;charset=UTF-8",
-    accept: "application/json,",
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
   },
+  // headers: {
+  //   "content-type": "application/json;charset=UTF-8",
+  //   accept: "application/json,",
+  // },
 });
+// instance.interceptors.request.use(function (config) {
+//   const accessToken = localStorage.getItem("token");
+//   config.headers.common["Authorization"] = `Bearer ${accessToken}`;
+//   return config;
+// });
 
-instance.interceptors.request.use(function (config) {
-  const accessToken = localStorage.getItem("token");
-  config.headers.common["Authorization"] = `Bearer ${accessToken}`;
-  return config;
-});
 export const apis = {
   //login
   //signup

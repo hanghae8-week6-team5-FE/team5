@@ -28,7 +28,7 @@ export const MainSlice = createSlice({
       state.isLoading = false;
       state.lists = action.payload;
     },
-    [__GetList.rejected]: (state, action) => {
+    [__GetList.fulfilled]: (state, action) => {
       state.isLoading = false;
     },
   },

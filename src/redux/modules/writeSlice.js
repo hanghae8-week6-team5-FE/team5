@@ -10,7 +10,7 @@ export const __postWrite = createAsyncThunk(
   "users/__postWrite",
   async (payload, thunkAPI) => {
     try {
-      const data = await instance.get(`/post/99`, payload);
+      const data = await instance.post(`/post`, payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
