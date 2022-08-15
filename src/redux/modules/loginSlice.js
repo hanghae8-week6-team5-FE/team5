@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import instance from "../../api/Request";
+import jwt_decode from "jwt-decode";
 
 const initialState = {
   checkusers: [], //아이디,ok값저장
@@ -13,12 +14,12 @@ export const __postCheckUser = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const data = await axios.post(
-        `http://shshinkitec.shop/api/login`,
-        payload
-      );
+      const data = await instance.post(`/login`, payload);
       localStorage.setItem("token", data.data.token);
-      return thunkAPI.fulfillWithValue(data.data);
+      const token = data.data.token;
+      console.log(jwt_decode(token));
+      const userId = jwt_decode(token);
+      return thunkAPI.fulfillWithValue(userId, data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -30,7 +31,7 @@ export const LoginSlice = createSlice({
   initialState,
   reducers: {
     logOutUser: (state, payload) => {
-      state.checkusers = { result: false };
+      state.checkusers = { ok: false };
     },
   },
   extraReducers: {
@@ -39,6 +40,8 @@ export const LoginSlice = createSlice({
     },
     [__postCheckUser.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.checkusers = action.payload;
+      console.log(action.payload);
       // window.alert("로그인성공입니다");
     },
     [__postCheckUser.rejected]: (state, action) => {

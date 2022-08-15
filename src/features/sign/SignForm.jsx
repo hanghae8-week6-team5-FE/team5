@@ -56,6 +56,11 @@ const SignForm = () => {
     ) {
       // dispatch(__postUser(signData));
       dispatch(__postUser(sign));
+      Setsign({
+        loginId: "",
+        password: "",
+        confirm: "",
+      });
       window.alert("회원가입성공했습니다~");
       navigate("/login");
     } else {
@@ -74,6 +79,7 @@ const SignForm = () => {
             name="loginId"
             onChange={onchangeHandler}
             placeholder="🔑아이디"
+            value={sign.loginId}
           ></Input>
           <Button type="button" onClick={CheckIdClickHandler}>
             아이디중복확인
@@ -85,6 +91,7 @@ const SignForm = () => {
         ) : null}
         <label>비밀번호</label>
         <Input
+          value={sign.password}
           name="password"
           type="password"
           placeholder="🔒 비밀번호"
@@ -98,6 +105,7 @@ const SignForm = () => {
         ) : null}
         <label>비밀번호체크 </label>
         <Input
+          value={sign.confirm}
           type="password"
           name="confirm"
           onChange={onchangeHandler}

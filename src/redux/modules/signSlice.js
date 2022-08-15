@@ -53,7 +53,8 @@ export const SignupSlice = createSlice({
       state.isLoading = true;
     },
     [__postUser.fulfilled]: (state, action) => {
-      state.users.push(action.payload);
+      state.users = state.action;
+      // console.log(state.action);
     },
     [__postUser.rejected]: (state, action) => {
       state.isLoading = false;
