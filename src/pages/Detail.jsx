@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import Styled from "styled-components";
 import Header from "../components/Header";
 
-
 function Detail() {
   return (
     <div>
@@ -17,10 +16,13 @@ function Detail() {
           <StyledDesc>
             <StyledTitle>
               <StyledTitleH2>피자 </StyledTitleH2>
-              <p>피자 설명을 기재.
-                피자 설명! 피자가 너무 맛있어요 냐미냐미 어쩌구 저쩌구 dolor sit amet consectetur adipisicing elit. Iure repellendus libero blanditiis inventore.
-                Aspernatur sit rddderum perspiciatis maxime amet libero, molestiae nam cum adipisci alias inventore soluta
-                ipsum magni? Voluptate.</p>
+              <p>
+                피자 설명을 기재. 피자 설명! 피자가 너무 맛있어요 냐미냐미
+                어쩌구 저쩌구 dolor sit amet consectetur adipisicing elit. Iure
+                repellendus libero blanditiis inventore. Aspernatur sit rddderum
+                perspiciatis maxime amet libero, molestiae nam cum adipisci
+                alias inventore soluta ipsum magni? Voluptate.
+              </p>
             </StyledTitle>
             <div>
               <StyledBtn>수정하기</StyledBtn>
@@ -41,9 +43,10 @@ function Detail() {
               <StyledBtn>삭제하기</StyledBtn>
             </StyledInputBox_Li>
             <StyledInputBox_Li>
-              Test Commit Lorem ipsum dolor sit amet, consectetur adipisicing elit. In blanditiis culpa mollitia, numquam repudiandae,
-              modi perferendis quam  quidem molestiae exercitationem incidunt facilis minima velit rerum voluptas magnam
-              quod. Odit, assumenda.
+              Test Commit Lorem ipsum dolor sit amet, consectetur adipisicing
+              elit. In blanditiis culpa mollitia, numquam repudiandae, modi
+              perferendis quam quidem molestiae exercitationem incidunt facilis
+              minima velit rerum voluptas magnam quod. Odit, assumenda.
               <StyledBtn>수정하기</StyledBtn>
               <StyledBtn>삭제하기</StyledBtn>
             </StyledInputBox_Li>
@@ -51,7 +54,7 @@ function Detail() {
         </div>
       </StyledDivWarp>
     </div>
-  )
+  );
 }
 
 export default Detail;
@@ -95,7 +98,6 @@ const StyledTitle = Styled.div`
 margin-bottom: 20px;
 `;
 
-
 const StyledTitleH2 = Styled.div`
 font-size: 50px;
 `;
@@ -138,10 +140,3 @@ color: grey;
 border: solid 2px rgb(144, 200, 247);
 }
 `;
-=======
-import React from "react";
-import Layout from "../components/Layout";
-const Detail = () => {
-  return <Layout></Layout>;
-};
-export default Detail;
