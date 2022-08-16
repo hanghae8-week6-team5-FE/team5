@@ -3,9 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import instance from "../../api/Request";
 
 const initialState = {
-  users: {
-    checkId: false,
-  },
+  users: [],
 
   isLoading: false,
 };
@@ -28,12 +26,18 @@ export const __postUser = createAsyncThunk(
 //아이디중복확인
 export const __CheckeUserId = createAsyncThunk(
   "users/__CheckeUserId",
-  async (payload, thunkAPI) => {
-    console.log(payload);
+  async ({ sign, Setcehckdiv }, thunkAPI) => {
+    console.log(sign, Setcehckdiv);
     try {
-      const data = await instance.post(`/idCheck`, payload);
+      const data = await instance.post(`/idCheck`, sign);
+      if (data.data.ok == true) {
+        alert("사용가능한아이디입니다");
+        Setcehckdiv(data.data.ok);
+      }
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
+      alert("이미 있는 아이디 입니다");
+      console.log(error.response.data);
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -61,12 +65,10 @@ export const SignupSlice = createSlice({
     [__CheckeUserId.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.users = action.payload;
-      return alert("회원가입가능한 아이디입니다");
     },
     [__CheckeUserId.rejected]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
-      return alert(action.payload.errorMessage);
+      state.users = action.payload;
     },
   },
 });

@@ -17,6 +17,10 @@ const SignForm = () => {
   });
   const [nickname, Setnickname] = useState(false);
   const [password, Setpassword] = useState(false);
+
+  const { users } = useSelector((state) => state.sign);
+  const [checkdiv, Setcehckdiv] = useState(false);
+
   const onchangeHandler = (event) => {
     const { value, name } = event.target;
     Setsign({ ...sign, [name]: value });
@@ -36,7 +40,10 @@ const SignForm = () => {
     }
   };
   const CheckIdClickHandler = () => {
-    dispatch(__CheckeUserId(sign));
+    if (sign.loginId.trim() === "") {
+      return alert("아이디를 입력해주세요");
+    }
+    dispatch(__CheckeUserId({ sign, Setcehckdiv }));
   };
   const onSumitHandler = (event) => {
     event.preventDefault();
@@ -53,13 +60,13 @@ const SignForm = () => {
       passwordCheck(sign.password) &&
       sign.password === sign.confirm
     ) {
-      // dispatch(__postUser(signData));
       dispatch(__postUser(sign));
       Setsign({
         loginId: "",
         password: "",
         confirm: "",
       });
+
       window.alert("회원가입성공했습니다~");
       navigate("/login");
     } else {
@@ -80,9 +87,13 @@ const SignForm = () => {
             placeholder="🔑아이디"
             value={sign.loginId}
           ></Input>
-          <Button type="button" onClick={CheckIdClickHandler}>
-            아이디중복확인
-          </Button>
+          {checkdiv ? (
+            <Button>V</Button>
+          ) : (
+            <Button type="button" onClick={CheckIdClickHandler}>
+              아이디중복확인
+            </Button>
+          )}
         </StCheckbox>
 
         {nickname ? (
