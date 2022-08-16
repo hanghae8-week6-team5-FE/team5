@@ -8,10 +8,10 @@ const initialState = {
 };
 
 export const __GetList = createAsyncThunk(
-  "users/__CheckeUserId",
+  "lists/__GetList",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get(`http://shshinkitec.shop/api/post`);
+      const data = await instance.get(`/post`);
       return thunkAPI.fulfillWithValue(data.data.result);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -26,10 +26,8 @@ export const MainSlice = createSlice({
   extraReducers: {
     [__GetList.fulfilled]: (state, action) => {
       state.isLoading = false;
+      console.log(action.payload);
       state.lists = action.payload;
-    },
-    [__GetList.fulfilled]: (state, action) => {
-      state.isLoading = false;
     },
   },
 });

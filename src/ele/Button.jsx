@@ -14,7 +14,7 @@ const StButton = styled.button`
   border: 1px solid #eee;
   height: 46px;
   border-radius: 8px;
-  color: white;
+  color: black;
   cursor: pointer;
   background-color: ${({ bgColor, disabled }) => (disabled ? "#ddd" : bgColor)};
   ${({ size }) => {

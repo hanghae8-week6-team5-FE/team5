@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+import Button from "../../ele/Button";
 import { __GetList } from "../../redux/modules/mainSlice";
+import MainCategory from "../../features/main/MainCategory";
 
 const MainList = (props) => {
+  const useButton = useRef();
   const dispatch = useDispatch();
   const { lists } = useSelector((state) => state.main);
 
@@ -13,14 +16,29 @@ const MainList = (props) => {
   console.log(lists);
   return (
     <Stflexbox>
-      {lists.map((elem) => (
-        <Stflexbox key={elem.postId}>
-          <p>{elem.title}</p>
-          {/* <img src="${elem.images}"></img> */}
-          <StImg imgUrl={elem.images}></StImg>
-          <div></div>
-        </Stflexbox>
-      ))}
+      <div id="All" style={{ width: "100px" }}>
+        1
+      </div>
+      <div id="1" style={{ width: "100px" }}>
+        1
+      </div>
+      <div id="2" style={{ width: "50px" }}>
+        2
+      </div>
+      <div id="3" style={{ width: "50px" }}>
+        3
+      </div>
+      <div id="4" style={{ width: "50px" }}>
+        4
+      </div>
+      <div id="5" style={{ width: "50px" }}>
+        5
+      </div>
+      <div style={{ display: "flex" }}>
+        {lists.map((list) => {
+          return <MainCategory list={list}></MainCategory>;
+        })}
+      </div>
     </Stflexbox>
   );
 };
@@ -28,12 +46,4 @@ const MainList = (props) => {
 export default MainList;
 const Stflexbox = styled.div`
   display: flex;
-`;
-const StImg = styled.div`
-  width: 100px;
-  height: 60vh;
-  border-radius: 20px;
-  background-size: cover;
-  background-position: center;
-  background-image: url(${(props) => props.imgUrl});
 `;

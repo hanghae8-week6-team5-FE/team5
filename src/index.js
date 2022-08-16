@@ -5,7 +5,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./redux/config/configStore";
 import { Provider } from "react-redux";
-import setToken from "./api/token";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
