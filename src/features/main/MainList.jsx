@@ -7,19 +7,12 @@ import MainCategory from "../../features/main/MainCategory";
 import { openList } from "../../redux/modules/mainSlice";
 
 const MainList = (props) => {
-  useEffect(() => {
-    dispatch(__GetList());
-  }, []);
   const dispatch = useDispatch();
   const { lists } = useSelector((state) => state.main);
-  useEffect(() => {
-    dispatch(__GetList());
-  }, []);
   const main_list = ["ALL", "1", "2", "3", "4", "5"];
   const [mainList, setMainList] = useState(main_list);
   const [newList, setNewList] = useState(lists);
   const [first, Setfirst] = useState("All");
-  console.log(newList);
 
   const handFilterData = (e) => {
     if (e.target.id === "ALL") {
@@ -30,7 +23,9 @@ const MainList = (props) => {
       setNewList(filterData);
     }
   };
-
+  useEffect(() => {
+    dispatch(__GetList());
+  }, []);
   return (
     <Stflexbox>
       {main_list.map((list, idx) => {
