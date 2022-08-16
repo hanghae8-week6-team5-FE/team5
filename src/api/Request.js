@@ -2,6 +2,12 @@ import axios from "axios";
 
 const instance = axios.create({
   baseURL: "http://shshinkitec.shop/api",
+<<<<<<< HEAD
+  headers: {
+    "Content-Type": "application/json",
+  },
+=======
+>>>>>>> da0a0738394f0d818c8890d19bb99c4814a04c13
   // headers: {
   //   "Content-Type": "application/json",
   //   Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -11,12 +17,25 @@ const instance = axios.create({
     accept: "application/json,",
   },
 });
-
 instance.interceptors.request.use(function (config) {
   const accessToken = localStorage.getItem("token");
-  config.headers.common["Authorization"] = `Bearer ${accessToken}`;
+  if (accessToken) {
+    config.headers.common["Authorization"] = `Bearer ${accessToken}`;
+  }
   return config;
 });
+<<<<<<< HEAD
+instance.interceptors.request.use(function (config) {
+  const accessToken = localStorage.getItem("token");
+  if (accessToken) {
+    config.headers.common["Authorization"] = `Bearer ${accessToken}`;
+  }
+
+  return config;
+});
+=======
+>>>>>>> da0a0738394f0d818c8890d19bb99c4814a04c13
+
 export const apis = {
   //login
   //signup

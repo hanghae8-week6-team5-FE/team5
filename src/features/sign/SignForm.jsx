@@ -3,11 +3,10 @@ import Input from "../../ele/Input";
 import Button from "../../ele/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { __postUser, __CheckeUserId } from "../../redux/modules/signSlice";
 import { idCheck, passwordCheck } from "../../shared/regExp";
-
 const SignForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,7 +36,7 @@ const SignForm = () => {
     }
   };
   const CheckIdClickHandler = () => {
-    dispatch(__CheckeUserId(sign.loginId));
+    dispatch(__CheckeUserId(sign));
   };
   const onSumitHandler = (event) => {
     event.preventDefault();

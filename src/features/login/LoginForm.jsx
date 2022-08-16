@@ -8,15 +8,17 @@ import { __postCheckUser } from "../../redux/modules/loginSlice.js";
 import { useSelector } from "react-redux";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const { checkusers } = useSelector((state) => state.login);
   console.log(checkusers);
+
   const dispatch = useDispatch();
   const [formstate, setFormState] = useState(false); //버튼잠금
   const [login, Setlogin] = useState({
     loginId: "",
     password: "",
   });
-  const navigate = useNavigate();
+
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     Setlogin({ ...login, [name]: value });
@@ -24,12 +26,13 @@ const LoginForm = () => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     dispatch(__postCheckUser(login));
+    if (login.loginId.trim() === "" || login.password.trim() === "") {
+      return alert("모든 항목을 입력해주세요.");
+    }
     Setlogin({
       loginId: "",
       password: "",
     });
-    // window.alert("로그인성공했습니다!");
-    // navigate("/");
   };
   useEffect(() => {
     if (login.loginId !== "" && login.password !== "") {
