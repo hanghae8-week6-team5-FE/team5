@@ -10,23 +10,21 @@ const MainList = (props) => {
   const dispatch = useDispatch();
   const { lists } = useSelector((state) => state.main);
   console.log(lists);
-
   useEffect(() => {
     dispatch(__GetList());
   }, []);
   console.log(lists);
   return (
     <Stflexbox>
-<<<<<<< HEAD
       {lists &&
         lists.map((elem) => (
           <Stflexbox key={elem.postId}>
             <p>{elem.title}</p>
-            <StImg imgUrl={elem.images}></StImg>
+            {/* <StImg imgUrl={elem.images}></StImg> */}
             <div></div>
           </Stflexbox>
         ))}
-=======
+
       <div id="All" style={{ width: "100px" }}>
         1
       </div>
@@ -50,7 +48,6 @@ const MainList = (props) => {
           return <MainCategory list={list}></MainCategory>;
         })}
       </div>
->>>>>>> da0a0738394f0d818c8890d19bb99c4814a04c13
     </Stflexbox>
   );
 };
