@@ -11,13 +11,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const { checkusers } = useSelector((state) => state.login);
   console.log(checkusers);
-  // if (checkusers.ok) {
-  //   alert("로그인 성공하셨습니다");
-  //   navigate("/");
-  // } else {
-  //   alert("로그인실패하셨습니다");
-  //   navigate("/login");
-  // }
+
   const dispatch = useDispatch();
   const [formstate, setFormState] = useState(false); //버튼잠금
   const [login, Setlogin] = useState({
@@ -32,12 +26,13 @@ const LoginForm = () => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     dispatch(__postCheckUser(login));
+    if (login.loginId.trim() === "" || login.password.trim() === "") {
+      return alert("모든 항목을 입력해주세요.");
+    }
     Setlogin({
       loginId: "",
       password: "",
     });
-    // window.alert("로그인성공했습니다!");
-    // navigate("/");
   };
   useEffect(() => {
     if (login.loginId !== "" && login.password !== "") {

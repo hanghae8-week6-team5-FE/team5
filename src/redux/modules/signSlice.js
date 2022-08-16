@@ -1,12 +1,12 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import instance from "../../api/Request";
 
 const initialState = {
   users: {
     checkId: false,
   },
-  //result:false,
-  //checkName:false,
+
   isLoading: false,
 };
 
@@ -31,13 +31,10 @@ export const __CheckeUserId = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const data = await axios.post(
-        `http://shshinkitec.shop/api/idCheck`,
-        payload
-      );
+      const data = await instance.post(`/idCheck`, payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
@@ -47,7 +44,7 @@ export const SignupSlice = createSlice({
   initialState,
   reducers: {
     changeCheckId: (state, payload) => {
-      state.checkId = false;
+      state.checkId = state.action;
     },
   },
   extraReducers: {
@@ -56,7 +53,6 @@ export const SignupSlice = createSlice({
     },
     [__postUser.fulfilled]: (state, action) => {
       state.users = state.action;
-      // console.log(state.action);
     },
     [__postUser.rejected]: (state, action) => {
       state.isLoading = false;
@@ -64,11 +60,13 @@ export const SignupSlice = createSlice({
     },
     [__CheckeUserId.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
+      state.users = action.payload;
+      return alert("회원가입가능한 아이디입니다");
     },
     [__CheckeUserId.rejected]: (state, action) => {
       state.isLoading = false;
-      window.alert("이미 존재하는 아이디입니다.");
+      console.log(action.payload);
+      return alert(action.payload.errorMessage);
     },
   },
 });
