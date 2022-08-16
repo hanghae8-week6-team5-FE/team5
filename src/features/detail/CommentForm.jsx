@@ -1,16 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { __getDetailUser } from "../../redux/modules/DetailSlice";
+import { __postComment, __getComment } from "../../redux/modules/DetailSlice";
 import Button from "../../ele/Button";
+import { useParams } from "react-router-dom";
 
 const CommentForm = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { comments } = useSelector((state) => state.detail);
+  console.log(comments);
+
+  const [comment, Setcomment] = useState({
+    comment: "",
+  });
+  const onChangeHandler = (event) => {
+    const { name, value } = event.target;
+    Setcomment({ ...comment, [name]: value });
+    // console.log(comment);
+  };
+  const onSubmitHandlr = (event) => {
+    event.preventDefault();
+    const postcomment = { comment, id };
+    dispatch(__postComment(postcomment));
+  };
+  useEffect(() => {
+    dispatch(__getComment);
+  }, []);
   return (
     <div>
       <StyledWriteBox>
-        <StyledInputBox type="text" spellcheck="false" />
-        <Button>추가하기</Button>
+        <form onSubmit={onSubmitHandlr}>
+          <StyledInputBox
+            type="text"
+            spellcheck="false"
+            name="comment"
+            onChange={onChangeHandler}
+          />
+          <Button>추가하기</Button>
+        </form>
       </StyledWriteBox>
       <ul>
         <StyledInputBox_Li>
