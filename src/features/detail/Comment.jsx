@@ -14,7 +14,6 @@ const Comment = ({ comment }) => {
     comment: "",
   });
   const commentid = comment.commentId;
-  // console.log(comment);
 
   const onEditHandler = () => {
     Setedit((prev) => !prev);
@@ -26,6 +25,7 @@ const Comment = ({ comment }) => {
   };
   const onSubmtHandler = (event) => {
     dispatch(__putComment({ commentid, comments }));
+
     Setcomments({
       comment: "",
     });

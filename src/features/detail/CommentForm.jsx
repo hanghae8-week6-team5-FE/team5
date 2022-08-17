@@ -11,14 +11,18 @@ const CommentForm = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { comments } = useSelector((state) => state.detail);
-  const onChangeHandler = (event) => {
-    const { name, value } = event.target;
-    Setcomment({ ...comment, [name]: value });
-  };
+
+  console.log(comments);
 
   const [comment, Setcomment] = useState({
     comment: "",
   });
+
+  const onChangeHandler = (event) => {
+    const { name, value } = event.target;
+    Setcomment({ ...comment, [name]: value });
+    // console.log(comment);
+  };
 
   const onSubmitHandlr = (event) => {
     event.preventDefault();

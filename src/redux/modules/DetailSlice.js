@@ -92,7 +92,7 @@ export const __getComment = createAsyncThunk(
 export const __putComment = createAsyncThunk(
   "put/__putComment",
   async ({ commentid, comments }, thunkAPI) => {
-    console.log(comments);
+    console.log(commentid);
     try {
       const data = await instance.put(`/comment/${commentid}`, comments);
       return thunkAPI.fulfillWithValue(comments);
@@ -184,7 +184,9 @@ export const DetailSlice = createSlice({
     },
     [__putComment.fulfilled]: (state, action) => {
       state.isLoading = false;
+      console.log(action.payload);
       state.comments.push(action.payload);
+      console.log(state.payload);
     },
     [__putComment.rejected]: (state, action) => {
       state.isLoading = false;
