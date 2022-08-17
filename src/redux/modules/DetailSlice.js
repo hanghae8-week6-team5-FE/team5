@@ -89,9 +89,10 @@ export const __getComment = createAsyncThunk(
 export const __putComment = createAsyncThunk(
   "put/__putComment",
   async (payload, thunkAPI) => {
+    console.log(payload.commentId);
     try {
       const data = await instance.put(
-        `/comment/${payload.id}`,
+        `/comment/${payload.commentId}`,
         payload.comments
       );
       return thunkAPI.fulfillWithValue(data.data);
@@ -139,8 +140,6 @@ export const DetailSlice = createSlice({
     },
     [__putDetailUser.fulfilled]: (state, action) => {
       state.isLoading = false;
-      // console.log(state.action);
-      // state.posts = action.payload.result; 에러고쳐야함
     },
     [__putDetailUser.rejected]: (state, action) => {
       state.isLoading = false;
@@ -156,12 +155,15 @@ export const DetailSlice = createSlice({
     [__deleteDetailUser.rejected]: (state, action) => {
       state.isLoading = false;
     },
+    ////////댓글
     [__postComment.pending]: (state) => {
       state.loading = true;
     },
     [__postComment.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.comments = action.payload.request;
       console.log(action.payload.request);
+
       // state.posts = action.payload.result; 에러고쳐야함
     },
     [__postComment.rejected]: (state, action) => {
@@ -173,6 +175,7 @@ export const DetailSlice = createSlice({
     [__getComment.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.comments = action.payload.result;
+      console.log(action.payload);
     },
     [__getComment.rejected]: (state, action) => {
       state.isLoading = false;
@@ -192,6 +195,7 @@ export const DetailSlice = createSlice({
     },
     [__deleteComment.fulfilled]: (state, action) => {
       state.isLoading = false;
+      console.log(action.payload);
     },
     [__deleteComment.rejected]: (state, action) => {
       state.isLoading = false;
