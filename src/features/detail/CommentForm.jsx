@@ -21,8 +21,7 @@ const CommentForm = () => {
   };
   const onSubmitHandlr = (event) => {
     event.preventDefault();
-    const postcomment = { comment, id };
-    dispatch(__postComment(postcomment));
+    dispatch(__postComment(comment));
   };
   useEffect(() => {
     dispatch(__getComment(id));

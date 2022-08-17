@@ -59,10 +59,7 @@ export const __postComment = createAsyncThunk(
   "post/__postComment",
   async (payload, thunkAPI) => {
     try {
-      const data = await instance.post(
-        `/comment/${payload.id}`,
-        payload.comment
-      );
+      const data = await instance.post(`/comment/`, payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       if (error.response.data.ok == false) {
@@ -90,10 +87,7 @@ export const __putComment = createAsyncThunk(
   "put/__putComment",
   async (payload, thunkAPI) => {
     try {
-      const data = await instance.put(
-        `/comment/${payload.id}`,
-        payload.comments
-      );
+      const data = await instance.put(`/comment/`, payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       if (error.response.data.ok == false) {
@@ -139,8 +133,6 @@ export const DetailSlice = createSlice({
     },
     [__putDetailUser.fulfilled]: (state, action) => {
       state.isLoading = false;
-      // console.log(state.action);
-      // state.posts = action.payload.result; 에러고쳐야함
     },
     [__putDetailUser.rejected]: (state, action) => {
       state.isLoading = false;
@@ -156,12 +148,12 @@ export const DetailSlice = createSlice({
     [__deleteDetailUser.rejected]: (state, action) => {
       state.isLoading = false;
     },
+    ////////댓글
     [__postComment.pending]: (state) => {
       state.loading = true;
     },
     [__postComment.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload.request);
       // state.posts = action.payload.result; 에러고쳐야함
     },
     [__postComment.rejected]: (state, action) => {
@@ -173,6 +165,7 @@ export const DetailSlice = createSlice({
     [__getComment.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.comments = action.payload.result;
+      console.log(state.comments);
     },
     [__getComment.rejected]: (state, action) => {
       state.isLoading = false;
@@ -182,6 +175,7 @@ export const DetailSlice = createSlice({
     },
     [__putComment.fulfilled]: (state, action) => {
       state.isLoading = false;
+      console.log(action.payload);
       state.comments = action.payload.result;
     },
     [__putComment.rejected]: (state, action) => {
@@ -192,6 +186,7 @@ export const DetailSlice = createSlice({
     },
     [__deleteComment.fulfilled]: (state, action) => {
       state.isLoading = false;
+      console.log(action.payload);
     },
     [__deleteComment.rejected]: (state, action) => {
       state.isLoading = false;

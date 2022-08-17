@@ -13,22 +13,23 @@ const Comment = ({ comment }) => {
   const [comments, Setcomments] = useState({
     comment: "",
   });
+
   const onEditHandler = () => {
     Setedit((prev) => !prev);
   };
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
-    Setcomments({ ...comment, [name]: value });
+    Setcomments({ ...comments, [name]: value });
+    console.log(comments);
   };
   const onSubmtHandler = (event) => {
-    const putcomment = { id, comments };
-    dispatch(__putComment(putcomment));
+    dispatch(__putComment(comments));
     Setcomments({
       comment: "",
     });
   };
   const onDeleteHandelr = () => {
-    dispatch(__deleteComment(id));
+    dispatch(__deleteComment(comment.commentId));
   };
   return (
     <div>
@@ -55,6 +56,7 @@ const Comment = ({ comment }) => {
           <p>{comment.comment}</p>
           <p>{comment.loginId}</p>
           <p>{comment.date}</p>
+
           <Button
             onClick={() => {
               onEditHandler();
