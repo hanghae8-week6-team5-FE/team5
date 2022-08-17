@@ -43,7 +43,7 @@ const CommentForm = () => {
       </StyledWriteBox>
       <ul>
         <StyledInputBox_Li>
-          댓글이 적혀있습니다. 댓글을 적었습니다!
+          댓글이 적혀있습니니다. 댓글을 적었습니다!
           <StyledBtn>수정하기</StyledBtn>
           <StyledBtn>삭제하기</StyledBtn>
         </StyledInputBox_Li>
