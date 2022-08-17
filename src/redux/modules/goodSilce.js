@@ -29,15 +29,16 @@ export const __goodUser = createAsyncThunk(
 export const GoodSlice = createSlice({
   name: "goodusers",
   initialState,
-  reducers: {},
+  reducers: {
+    goodUser: (state, payload) => {
+      state.goodusers = { good: 0 };
+    },
+  },
   extraReducers: {
     [__goodUser.pending]: (state) => {
       state.isLoading = true;
     },
-    [__goodUser.fulfilled]: (state, action) => {
-      console.log(state.action);
-      state.goodusers = state.action;
-    },
+    [__goodUser.fulfilled]: (state, action) => {},
     [__goodUser.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;

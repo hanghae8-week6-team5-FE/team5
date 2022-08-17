@@ -11,21 +11,24 @@ const CommentForm = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { comments } = useSelector((state) => state.detail);
-
-  const [comment, Setcomment] = useState({
-    comment: "",
-  });
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     Setcomment({ ...comment, [name]: value });
   };
+
+  const [comment, Setcomment] = useState({
+    comment: "",
+  });
+
   const onSubmitHandlr = (event) => {
     event.preventDefault();
-    dispatch(__postComment(comment));
+    dispatch(__postComment({ comment, id }));
   };
+
   useEffect(() => {
     dispatch(__getComment(id));
   }, []);
+
   return (
     <div>
       <StyledWriteBox>

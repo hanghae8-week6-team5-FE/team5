@@ -13,6 +13,8 @@ const Comment = ({ comment }) => {
   const [comments, Setcomments] = useState({
     comment: "",
   });
+  const commentid = comment.commentId;
+  // console.log(comment);
 
   const onEditHandler = () => {
     Setedit((prev) => !prev);
@@ -23,7 +25,7 @@ const Comment = ({ comment }) => {
     console.log(comments);
   };
   const onSubmtHandler = (event) => {
-    dispatch(__putComment(comments));
+    dispatch(__putComment({ commentid, comments }));
     Setcomments({
       comment: "",
     });

@@ -58,8 +58,12 @@ export const __deleteDetailUser = createAsyncThunk(
 export const __postComment = createAsyncThunk(
   "post/__postComment",
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
-      const data = await instance.post(`/comment/`, payload);
+      const data = await instance.post(
+        `/comment/${payload.id}`,
+        payload.comment
+      );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       if (error.response.data.ok == false) {
@@ -72,9 +76,11 @@ export const __postComment = createAsyncThunk(
 export const __getComment = createAsyncThunk(
   "get/__getComment",
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
       const data = await instance.get(`/comment/${payload}`);
-      return thunkAPI.fulfillWithValue(data.data);
+      console.log(data.data.result);
+      return thunkAPI.fulfillWithValue(data.data.result);
     } catch (error) {
       if (error.response.data.ok == false) {
         alert(`${error.response.data.errorMessage}`);
@@ -85,10 +91,11 @@ export const __getComment = createAsyncThunk(
 );
 export const __putComment = createAsyncThunk(
   "put/__putComment",
-  async (payload, thunkAPI) => {
+  async ({ commentid, comments }, thunkAPI) => {
+    console.log(comments);
     try {
-      const data = await instance.put(`/comment/`, payload);
-      return thunkAPI.fulfillWithValue(data.data);
+      const data = await instance.put(`/comment/${commentid}`, comments);
+      return thunkAPI.fulfillWithValue(comments);
     } catch (error) {
       if (error.response.data.ok == false) {
         alert(`${error.response.data.errorMessage}`);
@@ -103,7 +110,8 @@ export const __deleteComment = createAsyncThunk(
     console.log(payload);
     try {
       const data = await instance.delete(`/comment/${payload}`);
-      return thunkAPI.fulfillWithValue(data.data);
+      console.log(payload);
+      return thunkAPI.fulfillWithValue(payload, data);
     } catch (error) {
       if (error.response.data.ok == false) {
         alert(`${error.response.data.errorMessage}`);
@@ -154,7 +162,8 @@ export const DetailSlice = createSlice({
     },
     [__postComment.fulfilled]: (state, action) => {
       state.isLoading = false;
-      // state.posts = action.payload.result; 에러고쳐야함
+      console.log(action.payload.request);
+      state.comments.push(action.payload.request);
     },
     [__postComment.rejected]: (state, action) => {
       state.isLoading = false;
@@ -164,7 +173,7 @@ export const DetailSlice = createSlice({
     },
     [__getComment.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.comments = action.payload.result;
+      state.comments = action.payload;
       console.log(state.comments);
     },
     [__getComment.rejected]: (state, action) => {
@@ -175,8 +184,7 @@ export const DetailSlice = createSlice({
     },
     [__putComment.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
-      state.comments = action.payload.result;
+      state.comments.push(action.payload);
     },
     [__putComment.rejected]: (state, action) => {
       state.isLoading = false;
@@ -186,7 +194,12 @@ export const DetailSlice = createSlice({
     },
     [__deleteComment.fulfilled]: (state, action) => {
       state.isLoading = false;
+      // state.comments = action.payload;
       console.log(action.payload);
+      const target = state.comments.findIndex(
+        (comment) => comment.commentId === action.payload
+      );
+      state.comments.splice(target, 1);
     },
     [__deleteComment.rejected]: (state, action) => {
       state.isLoading = false;

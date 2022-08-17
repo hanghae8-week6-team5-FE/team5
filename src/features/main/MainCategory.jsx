@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { __goodUser } from "../../redux/modules/goodSilce";
-
+import { __GetList } from "../../redux/modules/mainSlice";
 const MainCategory = ({ list }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const goodHandler = () => {
     dispatch(__goodUser(list.postId));
   };
-
+  console.log(list);
   const { title, images, postId } = list;
   console.log(title);
   return (

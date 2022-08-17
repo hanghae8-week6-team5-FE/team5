@@ -25,9 +25,9 @@ const MainList = () => {
     dispatch(__GetList());
   }, []);
   useEffect(() => {
-    if (lists.length === 0) {
-      return;
-    }
+    // if (lists.length === 0) {
+    //   return;
+    // }
     setNewList(lists);
   }, [lists]);
 
