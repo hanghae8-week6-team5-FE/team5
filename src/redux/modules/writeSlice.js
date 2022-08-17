@@ -13,6 +13,9 @@ export const __postWrite = createAsyncThunk(
       const data = await instance.post(`/post`, payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
+      if (error.response.data.ok == false) {
+        alert(`${error.response.data.errorMessage}`);
+      }
       return thunkAPI.rejectWithValue(error);
     }
   }

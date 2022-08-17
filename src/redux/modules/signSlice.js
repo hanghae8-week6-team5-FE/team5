@@ -19,6 +19,9 @@ export const __postUser = createAsyncThunk(
       );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
+      if (error.response.data.ok == false) {
+        alert(`${error.response.data.errorMessage}`);
+      }
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -27,7 +30,6 @@ export const __postUser = createAsyncThunk(
 export const __CheckeUserId = createAsyncThunk(
   "users/__CheckeUserId",
   async ({ sign, Setcehckdiv }, thunkAPI) => {
-    console.log(sign, Setcehckdiv);
     try {
       const data = await instance.post(`/idCheck`, sign);
       if (data.data.ok == true) {

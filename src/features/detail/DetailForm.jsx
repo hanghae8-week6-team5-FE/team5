@@ -99,8 +99,17 @@ const DetailForm = () => {
               name="images"
             ></input>
             <label>title 수정</label>
-            <input type="text" name="title" onChange={onChangeHandler}></input>
-            <textarea onChange={onChangeHandler} name="content"></textarea>
+            <input
+              type="text"
+              name="title"
+              onChange={onChangeHandler}
+              defaultValue={posts.title}
+            ></input>
+            <textarea
+              onChange={onChangeHandler}
+              defaultValue={posts.content}
+              name="content"
+            ></textarea>
             <Button
               onClick={() => {
                 EditClickHander();

@@ -2,14 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
   baseURL: "http://shshinkitec.shop/api",
-  headers: {
-    "Content-Type": "application/json",
-  },
 
-  // headers: {
-  //   "Content-Type": "application/json",
-  //   Authorization: `Bearer ${localStorage.getItem("token")}`,
-  // },
   headers: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
@@ -20,14 +13,6 @@ instance.interceptors.request.use(function (config) {
   if (accessToken) {
     config.headers.common["Authorization"] = `Bearer ${accessToken}`;
   }
-  return config;
-});
-instance.interceptors.request.use(function (config) {
-  const accessToken = localStorage.getItem("token");
-  if (accessToken) {
-    config.headers.common["Authorization"] = `Bearer ${accessToken}`;
-  }
-
   return config;
 });
 

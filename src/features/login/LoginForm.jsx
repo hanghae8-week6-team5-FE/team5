@@ -24,7 +24,7 @@ const LoginForm = () => {
   };
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    dispatch(__postCheckUser(login));
+    dispatch(__postCheckUser({ login, navigate }));
     if (login.loginId.trim() === "" || login.password.trim() === "") {
       return alert("모든 항목을 입력해주세요.");
     }

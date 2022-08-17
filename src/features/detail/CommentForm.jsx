@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Comment from "./Comment";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +11,6 @@ const CommentForm = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { comments } = useSelector((state) => state.detail);
-  console.log(comments);
 
   const [comment, Setcomment] = useState({
     comment: "",
@@ -18,7 +18,6 @@ const CommentForm = () => {
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     Setcomment({ ...comment, [name]: value });
-    // console.log(comment);
   };
   const onSubmitHandlr = (event) => {
     event.preventDefault();
@@ -26,7 +25,7 @@ const CommentForm = () => {
     dispatch(__postComment(postcomment));
   };
   useEffect(() => {
-    dispatch(__getComment);
+    dispatch(__getComment(id));
   }, []);
   return (
     <div>
@@ -41,21 +40,10 @@ const CommentForm = () => {
           <Button>추가하기</Button>
         </form>
       </StyledWriteBox>
-      <ul>
-        <StyledInputBox_Li>
-          댓글이 적혀있습니다. 댓글을 적었습니다!
-          <StyledBtn>수정하기</StyledBtn>
-          <StyledBtn>삭제하기</StyledBtn>
-        </StyledInputBox_Li>
-        <StyledInputBox_Li>
-          Test Commit Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          In blanditiis culpa mollitia, numquam repudiandae, modi perferendis
-          quam quidem molestiae exercitationem incidunt facilis minima velit
-          rerum voluptas magnam quod. Odit, assumenda.
-          <StyledBtn>수정하기</StyledBtn>
-          <StyledBtn>삭제하기</StyledBtn>
-        </StyledInputBox_Li>
-      </ul>
+
+      {comments.map((comment, idx) => {
+        return <Comment key={idx} comment={comment}></Comment>;
+      })}
     </div>
   );
 };

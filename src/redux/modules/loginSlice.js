@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import instance from "../../api/Request";
-import { useSelector } from "react-redux";
 import jwt_decode from "jwt-decode";
 
 const initialState = {
@@ -11,19 +9,24 @@ const initialState = {
 };
 
 export const __postCheckUser = createAsyncThunk(
-  "users/__postUser",
-  async (payload, thunkAPI) => {
-    console.log(payload);
+  "checkusers/__postUser",
+  async ({ login, navigate }, thunkAPI) => {
     try {
-      const data = await instance.post(`/login`, payload);
+      const data = await instance.post(`/login`, login);
       const token = data.data.token;
       localStorage.setItem("token", token); //토큰 로컬 저장하는부분
       console.log(jwt_decode(token));
-
       const userId = jwt_decode(token);
-
+      if (data.data.ok == true) {
+        alert(`${userId.loginId}님 환영합니다`);
+        navigate("/");
+      }
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
+      console.log(error);
+      if (error.response.data.ok == false) {
+        alert(`${error.response.data.errorMessage}`);
+      }
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -42,14 +45,13 @@ export const LoginSlice = createSlice({
       state.loading = true;
     },
     [__postCheckUser.fulfilled]: (state, action) => {
-      state.isLoading = false;
+      state.loading = false;
       state.checkusers = action.payload;
-      window.alert("로그인성공입니다");
+      console.log(action.payload);
     },
     [__postCheckUser.rejected]: (state, action) => {
-      state.isLoading = false;
-
-      window.alert("로그인실패입니다");
+      state.loading = false;
+      console.log(action.payload);
     },
   },
 });

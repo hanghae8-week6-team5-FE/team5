@@ -5,11 +5,13 @@ import Input from "../../ele/Input";
 import Button from "../../ele/Button";
 import { __postWrite } from "../../redux/modules/writeSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import s3Upload from "react-aws-s3";
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const WriteImage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const imgvalue = useRef(null);
   const [write, Setwrite] = useState({
@@ -54,6 +56,7 @@ const WriteImage = () => {
           category: "",
           content: "",
         });
+        navigate("/");
       }
     });
   };
