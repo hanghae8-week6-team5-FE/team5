@@ -8,13 +8,9 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
     text-decoration: none;
     outline : none;
-    font-family: 'Noto Sans KR', sans-serif;
+   
   }
-
-  body {
-    overflow: hidden;
-  }
-
+  
 `;
 
 export default GlobalStyle;
