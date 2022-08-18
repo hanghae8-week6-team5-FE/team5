@@ -79,74 +79,181 @@ const DetailForm = () => {
   return (
     <div>
       <StyledDivPrev>
-        <Button
+        <StyledBtn
           onClick={() => {
             navigate("/");
           }}
         >
-          이전페이지이동
-        </Button>
+          이전페이지
+        </StyledBtn>
       </StyledDivPrev>
       {edit ? (
-        <div>
-          <form>
-            <StImg src={editForm.images}></StImg>
-            <input
-              accept="image/*"
-              ref={imgvalue}
-              onChange={onChangeImg}
-              type="file"
-              name="images"
-            ></input>
-            <label>title 수정</label>
-            <input type="text" name="title" onChange={onChangeHandler}></input>
-            <textarea onChange={onChangeHandler} name="content"></textarea>
-            <Button
-              onClick={() => {
-                EditClickHander();
-                onSubmitHandler();
-              }}
-            >
-              수정완료!!
-            </Button>
-          </form>
-        </div>
-      ) : (
-        <StyledCard>
-          <StyledWrapImg src={posts.images} />
+        <StyledDivWarp>
+          <StyledCard>
+            <form>
+              <StyledWrapImg src={editForm.images} />
+              <StyledInputBox
+                accept="image/*"
+                ref={imgvalue}
+                onChange={onChangeImg}
+                type="file"
+                name="images"
+              ></StyledInputBox>
+              <label>title 수정</label>
+              <StyledInputBox type="text" name="title" onChange={onChangeHandler}>
 
-          <StyledDesc>
-            <StyledTitle>
-              <StyledTitleH2>{posts.title} </StyledTitleH2>
-              <p>{posts.content}</p>
-            </StyledTitle>
-          </StyledDesc>
-          <Button onClick={EditClickHander}>수정하기!!</Button>
-          <Button onClick={ondeleteHandler}>삭제하기!</Button>
-        </StyledCard>
+              </StyledInputBox>
+              <textarea onChange={onChangeHandler} name="content"></textarea>
+              <StyledBtn
+                onClick={() => {
+                  EditClickHander();
+                  onSubmitHandler();
+                }}
+              >
+                수정완료!!
+              </StyledBtn>
+            </form>
+          </StyledCard>
+        </StyledDivWarp>
+      ) : (
+        <StyledDivWarp>
+          <StyledCard>
+            <div style={{
+              display: "flex", flexDirection: "column",
+              alignItems: "center", justifyContent: "center",
+              marginLeft: "20px"
+            }}>
+              <StyledWrapImg src={posts.images} />
+            </div>
+            <StyledDesc>
+              <StyledTitle>
+                <StyledTitleH2>{posts.title} </StyledTitleH2>
+                <p>{posts.content}</p>
+              </StyledTitle>
+              <StyledBtnWarp>
+                <StyledBtn1 onClick={EditClickHander}>수정하기</StyledBtn1>
+                <StyledBtn1 onClick={ondeleteHandler}>삭제하기</StyledBtn1>
+              </StyledBtnWarp>
+            </StyledDesc>
+          </StyledCard>
+        </StyledDivWarp>
       )}
     </div>
   );
 };
+
 export default DetailForm;
+
+
+const StyledBtn = styled.button`
+  color: white;
+  border: solid 2px ;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 1px;
+  background-color: rgb(215, 98, 115);
+
+  &:hover {
+    cursor: pointer;
+    border: solid 2px transparent;
+    background-color: white;
+    color: rgb(215, 98, 115);
+    border: solid 2px white;
+  }
+`;
+
+
+const StyledTxt = styled.textarea`
+  display: flex;
+  flex-direction: column;
+  margin-top: 20vm;
+`;
+
+
+const StyledBtn1 = styled.button`
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-weight:bold;
+	padding:6px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+
+  &:hover {
+    cursor: pointer;
+	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color:#f6f6f6;
+  }
+  &:active {
+	position:relative;
+	top:1px;
+  }
+`;
+
+
+
+
+const StyledInputBox = styled.input`
+  color: rgb(215, 98, 115);//폰트색
+  width: 80%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 2px solid rgb(215, 98, 115); //댓입력 보더
+  background-color: white;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
 
 const StyledDivPrev = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding: 20px 30px;
 `;
 
-//이미지 물어보기
+
+const StyledDivWarp = styled.div`
+padding: 0 40px;
+width: 55vw;
+margin: 0 auto;
+`;
+
+const StyledBtnWarp = styled.div`
+    display: flex;
+    margin-right:15px;
+    margin-left: auto;
+    flex-direction: row;
+    gap: 15px;
+`;
+
+
 const StyledWrapImg = styled.img`
-  width: 300px;
-  height: 200px;
-  border-radius: 20px 0 0 20px;
+  width: initial;
+  height:30vh;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px 20px 20px 20px;
+
 `;
-const StImg = styled.img`
-  width: 200px;
-  height: 200px;
+
+const StyledForm = styled.form`
+width: 30vw;
+    backdrop-filter: blur(23px) saturate(59%);
+    -webkit-backdrop-filter: blur(23px) saturate(59%);
+    background-color: rgba(255, 200, 200, 0.68);
+    border-radius: 12px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
 `;
+
 
 const StyledCard = styled.div`
   background: rgba(255, 255, 255, 0.01);
@@ -157,18 +264,24 @@ const StyledCard = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.18);
 
   display: flex;
-  justify-content: space-between;
+  gap: 30px;
   margin-bottom: 20px;
 `;
 
 const StyledDesc = styled.div`
   margin-left: 20px;
+  width: 30vw;
+  height: 40vh;
+  display:flex;
+  flex-direction: column;
 `;
 
 const StyledTitle = styled.div`
   margin-bottom: 20px;
+  height: 33vh;
 `;
 
 const StyledTitleH2 = styled.div`
-  font-size: 50px;
+  margin-top: 30px;
+  font-size: 30px;
 `;

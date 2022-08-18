@@ -41,40 +41,56 @@ const LoginForm = () => {
     }
   }, [login]);
   return (
-    <Stlogin>
+    <StyLoginForm>
       <form onSubmit={onSubmitHandler}>
-        <label>아이디</label>
-        <Input
-          value={login.loginId}
-          name="loginId"
-          onChange={onChangeHandler}
-        ></Input>
-        <label>비밀번호</label>
-        <Input
-          value={login.password}
-          name="password"
-          onChange={onChangeHandler}
-          type="password"
-        ></Input>
-        <Button bgColor="#FE531F" disabled={!formstate}>
-          로그인
-        </Button>
+        <h2 style={{ width: "350px", height: "60px", margin: "0 auto" }}>✨Welcome to Login✨</h2>
+
+        <label>
+          <p align="left"> UserID </p>
+          <Input
+            value={login.loginId}
+            name="loginId"
+            onChange={onChangeHandler}
+          ></Input>
+        </label>
+
+        <label>
+
+          <p align="left"> PassWord </p>
+
+          <Input
+            value={login.password}
+            name="password"
+            onChange={onChangeHandler}
+            type="password"
+          ></Input>
+        </label>
+
+        <div>
+          <Button bgColor=" rgb(215, 98, 115)" disabled={!formstate}>
+            로그인
+          </Button>
+          <Button
+            onClick={() => {
+              navigate("/sign");
+            }}
+          >
+            회원가입으로
+          </Button>
+        </div>
       </form>
-      <Button
-        onClick={() => {
-          navigate("/sign");
-        }}
-      >
-        회원가입으로
-      </Button>
-    </Stlogin>
+
+    </StyLoginForm >
+
   );
 };
-const Stlogin = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+const StyLoginForm = styled.div`
+            border-radius: 10px;
+            padding:30px 50px;
+            text-align: center;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+              `;
 export default LoginForm;
