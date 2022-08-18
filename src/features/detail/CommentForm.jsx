@@ -28,6 +28,10 @@ const CommentForm = () => {
     dispatch(__getComment);
   }, []);
   return (
+
+    <div style={{ width: "55vw", display: "Flex", flexDirection: "column", margin: "auto" }}>
+      <StyledWriteBox>
+        <form style={{ width: "55vw", display: "flex", flexDirection: "row", gap: "20px" }} onSubmit={onSubmitHandlr}>
     <div
       style={{
         width: "55vw",
@@ -70,7 +74,7 @@ const CommentForm = () => {
           <StyledBtn>삭제</StyledBtn>
         </StyledInputBox_Li>
       </ul>
-    </div>
+    </div >
   );
 };
 export default CommentForm;
@@ -80,16 +84,27 @@ const StyledWriteBox = styled.div`
 `;
 
 const StyledInputBox = styled.input`
+
+  color: rgb(215, 98, 115);//폰트색
+  width: 47vw;
+  padding: 10px;
+  border-radius: 20px;
+ border: 2px solid rgba(215, 98, 115, 30%) ;//댓입력 보더
   color: rgb(215, 98, 115); //폰트색
   width: 47vw;
   padding: 10px;
   border-radius: 20px;
   border: 2px solid rgba(215, 98, 115, 30%); //댓입력 보더
+
   background-color: white;
 
   &:focus {
     outline: none;
+
+    border: 2px solid rgb(215, 98, 115) ;
+
     border: 2px solid rgb(215, 98, 115);
+
   }
 `;
 
@@ -98,6 +113,7 @@ const StyledInputBox_Li = styled.li`
   margin-top: 20px;
   margin-bottom: 20px;
 `;
+
 
 const StyledBtn = styled.button`
   color: white;
@@ -113,8 +129,12 @@ const StyledBtn = styled.button`
     background-color: white;
     color: rgb(215, 98, 115);
     border: solid 2px white;
+    }
+`;
+
   }
 `;
+
 
 // const StyledBtn = styled.button`
 //   color: white;

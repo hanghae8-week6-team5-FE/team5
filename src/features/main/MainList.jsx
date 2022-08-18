@@ -127,6 +127,28 @@ const StContainerBackside = styled.div`
   width: 1200px;
   height: 2000px;
   display: flex;
+  gap: 20px;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  /* background-color: blue; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+
+const StGoToWrite = styled.button`
+  display: flex;
+  justify-content: flex-end;
+  &:hover {
+    background-color: white;
+  }
+  /* border: 1px solid black; */
+`;
+
+const StContainerBackside = styled.div`
+  background-color: white;
+  flex-direction: row;
+  width: 1200px;
+  height: 2000px;
+  display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: baseline;
@@ -136,6 +158,24 @@ const StContainerBackside = styled.div`
   align-content: flex-start;
   /* position: absolute; */
   align-items: center;
+
+`;
+
+const StbtnStyle = styled.button`
+  color: black;
+  padding: 0.375rem 0.75rem;
+  border: 1px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 9rem;
+  height: 2rem;
+  margin: auto;
+`;
+
+const StMainCategory = styled.div`
+  background-color: white;
+  border-radius: 20px;
+
 `;
 
 const StbtnStyle = styled.button`

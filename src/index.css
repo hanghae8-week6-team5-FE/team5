@@ -1,4 +1,6 @@
 * {
+
+  font-family: "InfinitySans-RegularA1" !important;
   font-family: "BMHANNAPro";
 }
 
@@ -11,9 +13,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  background-image: url('../public/images/back.png');
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+@font-face {
+    font-family: 'InfinitySans-RegularA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+
+} */
 }
 
 @font-face {
