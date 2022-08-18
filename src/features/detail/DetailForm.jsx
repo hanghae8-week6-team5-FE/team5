@@ -91,28 +91,47 @@ const DetailForm = () => {
         <StyledDivWarp>
           <StyledCard>
             <form>
-              <StyledWrapImg src={editForm.images} />
-              <StyledInputBox
-                accept="image/*"
-                ref={imgvalue}
-                onChange={onChangeImg}
-                type="file"
-                name="images"
-              ></StyledInputBox>
-              <label>title 수정</label>
-              <StyledInputBox type="text" name="title" onChange={onChangeHandler}>
-
-              </StyledInputBox>
-              <textarea onChange={onChangeHandler} name="content"></textarea>
-              <StyledBtn
-                onClick={() => {
-                  EditClickHander();
-                  onSubmitHandler();
-                }}
-              >
-                수정완료!!
-              </StyledBtn>
-            </form>
+              <Stimgbox>
+                <StLabel>사진선택</StLabel>
+                {/* <StyledWrapImg src={editForm.images} /> */}
+                <StFileBtn
+                  accept="image/*"
+                  onChange={onChangeImg}
+                  name="images"
+                  type="file"
+                  id="foodImage"
+                  ref={imgvalue}
+                />
+                <Stimg>
+                  <img src={editForm.images} alt="등록한이미지"></img>
+                </Stimg>
+              </Stimgbox>
+              <StimgboxTitle>
+                <StLabel>제목입력</StLabel>
+                <StyledInputBox
+                  type="text"
+                  name="title"
+                  placeholder="제목입력"
+                  onChange={onChangeHandler}
+                />
+              </StimgboxTitle>
+              <StimgboxTitle>
+                <StLabel>내용입력</StLabel>
+                <StTextarea
+                  onChange={onChangeHandler}
+                  name="content"
+                ></StTextarea>
+              </StimgboxTitle>
+              <StimgboxBtn>
+                <StyledBtn
+                  onClick={() => {
+                    EditClickHander();
+                    onSubmitHandler();
+                  }}
+                >
+                  수정완료!!
+                </StyledBtn>
+              </StimgboxBtn></form>
           </StyledCard>
         </StyledDivWarp>
       ) : (
@@ -147,7 +166,7 @@ export default DetailForm;
 
 const StyledBtn = styled.button`
   color: white;
-  border: solid 2px ;
+  border: solid 2px;
   padding: 5px;
   border-radius: 10px;
   margin: 1px;
@@ -162,44 +181,39 @@ const StyledBtn = styled.button`
   }
 `;
 
-
 const StyledTxt = styled.textarea`
   display: flex;
   flex-direction: column;
   margin-top: 20vm;
 `;
 
-
 const StyledBtn1 = styled.button`
-	box-shadow:inset 0px 1px 0px 0px #ffffff;
-	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-	background-color:#ffffff;
-	border-radius:6px;
-	border:1px solid #dcdcdc;
-	display:inline-block;
-	cursor:pointer;
-	color:#666666;
-	font-weight:bold;
-	padding:6px 10px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #ffffff;
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+  background-color: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  color: #666666;
+  font-weight: bold;
+  padding: 6px 10px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
 
   &:hover {
     cursor: pointer;
-	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
-	background-color:#f6f6f6;
+    background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+    background-color: #f6f6f6;
   }
   &:active {
-	position:relative;
-	top:1px;
+    position: relative;
+    top: 1px;
   }
 `;
 
-
-
-
 const StyledInputBox = styled.input`
-  color: rgb(215, 98, 115);//폰트색
+  color: rgb(215, 98, 115); //폰트색
   width: 80%;
   padding: 10px;
   border-radius: 20px;
@@ -211,7 +225,6 @@ const StyledInputBox = styled.input`
   }
 `;
 
-
 const StyledDivPrev = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -219,41 +232,37 @@ const StyledDivPrev = styled.div`
   padding: 20px 30px;
 `;
 
-
 const StyledDivWarp = styled.div`
-padding: 0 40px;
-width: 55vw;
-margin: 0 auto;
+  padding: 0 40px;
+  width: 55vw;
+  margin: 0 auto;
 `;
 
 const StyledBtnWarp = styled.div`
-    display: flex;
-    margin-right:15px;
-    margin-left: auto;
-    flex-direction: row;
-    gap: 15px;
+  display: flex;
+  margin-right: 15px;
+  margin-left: auto;
+  flex-direction: row;
+  gap: 15px;
 `;
-
 
 const StyledWrapImg = styled.img`
   width: initial;
-  height:30vh;
+  height: 30vh;
   border-radius: 20px;
   background-size: cover;
   background-position: center;
   border-radius: 20px 20px 20px 20px;
-
 `;
 
 const StyledForm = styled.form`
-width: 30vw;
-    backdrop-filter: blur(23px) saturate(59%);
-    -webkit-backdrop-filter: blur(23px) saturate(59%);
-    background-color: rgba(255, 200, 200, 0.68);
-    border-radius: 12px;
-    border: 1px solid rgba(209, 213, 219, 0.3);
+  width: 30vw;
+  backdrop-filter: blur(23px) saturate(59%);
+  -webkit-backdrop-filter: blur(23px) saturate(59%);
+  background-color: rgba(255, 200, 200, 0.68);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
 `;
-
 
 const StyledCard = styled.div`
   background: rgba(255, 255, 255, 0.01);
@@ -272,7 +281,7 @@ const StyledDesc = styled.div`
   margin-left: 20px;
   width: 30vw;
   height: 40vh;
-  display:flex;
+  display: flex;
   flex-direction: column;
 `;
 
@@ -284,4 +293,98 @@ const StyledTitle = styled.div`
 const StyledTitleH2 = styled.div`
   margin-top: 30px;
   font-size: 30px;
+`;
+
+const StimgboxTitle = styled.div`
+  height: 50px;
+  display: flex;
+  margin: 20px;
+  padding: 5px;
+`;
+
+const StLabel = styled.label`
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 10px;
+  align-items: flex-start;
+  width: 100px;
+`;
+const StInput = styled.input`
+  box-sizing: border-box;
+  margin-left: 10px;
+  height: 46px;
+  width: 500px;
+  outline: none;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 14px;
+  border: 1px solid #eee;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+`;
+const StTextarea = styled.textarea`
+  width: 100%;
+  height: 100px;
+  color: rgb(215, 98, 115); //폰트색
+  width: 80%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 2px solid rgb(215, 98, 115); //댓입력 보더
+  background-color: white;
+
+  &:focus {
+    outline: none;
+  }
+`;
+const StimgboxBtn = styled.div`
+  display: flex;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  /* background-color: blue; */
+  margin-top: 70px;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+`;
+const Stimgbox = styled.div`
+  display: block;
+  margin: 20px;
+`;
+
+const StFileBtn = styled.input`
+  position: relative;
+  width: 100px;
+  height: 40px;
+  background-color: white;
+  color: white;
+  border: none;
+  font-size: 14px;
+  margin-left: 16px;
+  font-weight: bold;
+  align-self: flex-start;
+  padding-bottom: 5px;
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+const Stimg = styled.div`
+  width: 300px;
+  height: 150px;
+  background-color: #e2e2e2;
+  border: 1px solid #c7c7c7;
+  border-radius: 15px;
+  color: #c7c7c7;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 100px;
+  margin-bottom: 10px;
+  & > img {
+    width: 300px;
+    height: 150px;
+    border-radius: 15px;
+    background-color: #e2e2e2;
+  }
 `;
