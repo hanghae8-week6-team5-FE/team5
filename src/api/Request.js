@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://shshinkitec.shop/api",
+  baseURL: "https://shshinkitec.shop/api",
 
   headers: {
     "content-type": "application/json;charset=UTF-8",
