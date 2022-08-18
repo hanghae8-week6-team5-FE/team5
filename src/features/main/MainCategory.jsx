@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import likeBtn from "./likeBtn.png";
 import { __goodUser } from "../../redux/modules/goodSlice";
 const MainCategory = ({ list }) => {
   const navigate = useNavigate();
@@ -31,9 +30,6 @@ const MainCategory = ({ list }) => {
         <StTextBox>
           <StInnerText>{title}</StInnerText>
           <StNickname>{loginId}</StNickname>
-        </StTextBox>
-        <StTextBox>
-          <StlikeBtn sre={likeBtn} />
         </StTextBox>
       </StList>
     </StListOutline>

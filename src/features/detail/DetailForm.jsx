@@ -106,13 +106,6 @@ const DetailForm = () => {
                   <img src={editForm.images} alt="등록한이미지"></img>
                 </Stimg>
               </Stimgbox>
-              {/* <StyledInputBox
-                accept="image/*"
-                ref={imgvalue}
-                onChange={onChangeImg}
-                type="file"
-                name="images"
-              ></StyledInputBox> */}
               <StimgboxTitle>
                 <StLabel>제목입력</StLabel>
                 <StyledInputBox
@@ -122,13 +115,6 @@ const DetailForm = () => {
                   onChange={onChangeHandler}
                 />
               </StimgboxTitle>
-              {/* <label>title 수정</label> */}
-              {/* <StyledInputBox
-                type="text"
-                name="title"
-                placeholder="제목입력"
-                onChange={onChangeHandler}
-              /> */}
               <StimgboxTitle>
                 <StLabel>내용입력</StLabel>
                 <StTextarea
