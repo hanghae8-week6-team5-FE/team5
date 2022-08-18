@@ -26,7 +26,7 @@ export const WriteSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [__postWrite.pending]: (state) => {},
+    [__postWrite.pending]: (state) => { },
     [__postWrite.fulfilled]: (state, action) => {
       console.log(action.payload);
     },
@@ -37,5 +37,5 @@ export const WriteSlice = createSlice({
   },
 });
 
-export const {} = WriteSlice.actions;
+export const { } = WriteSlice.actions;
 export default WriteSlice.reducer;
