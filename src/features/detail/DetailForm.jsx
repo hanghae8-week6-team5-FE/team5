@@ -132,6 +132,8 @@ const DetailForm = () => {
                   수정완료!!
                 </StyledBtn>
               </StimgboxBtn></form>
+              </StimgboxBtn>
+            </form>
           </StyledCard>
         </StyledDivWarp>
       ) : (
@@ -142,6 +144,17 @@ const DetailForm = () => {
               alignItems: "center", justifyContent: "center",
               marginLeft: "20px"
             }}>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                marginLeft: "20px",
+              }}
+            >
+
               <StyledWrapImg src={posts.images} />
             </div>
             <StyledDesc>
@@ -162,7 +175,6 @@ const DetailForm = () => {
 };
 
 export default DetailForm;
-
 
 const StyledBtn = styled.button`
   color: white;
@@ -323,6 +335,72 @@ const StInput = styled.input`
   justify-content: center;
   align-items: center;
   vertical-align: middle;
+
+`;
+const StTextarea = styled.textarea`
+  width: 100%;
+  height: 100px;
+  color: rgb(215, 98, 115); //폰트색
+  width: 80%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 2px solid rgb(215, 98, 115); //댓입력 보더
+  background-color: white;
+
+  &:focus {
+    outline: none;
+  }
+`;
+const StimgboxBtn = styled.div`
+  display: flex;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  /* background-color: blue; */
+  margin-top: 70px;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+`;
+const Stimgbox = styled.div`
+  display: block;
+  margin: 20px;
+`;
+
+const StFileBtn = styled.input`
+  position: relative;
+  width: 100px;
+  height: 40px;
+  background-color: white;
+  color: white;
+  border: none;
+  font-size: 14px;
+  margin-left: 16px;
+  font-weight: bold;
+  align-self: flex-start;
+  padding-bottom: 5px;
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+const Stimg = styled.div`
+  width: 300px;
+  height: 150px;
+  background-color: #e2e2e2;
+  border: 1px solid #c7c7c7;
+  border-radius: 15px;
+  color: #c7c7c7;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 100px;
+  margin-bottom: 10px;
+  & > img {
+    width: 300px;
+    height: 150px;
+    border-radius: 15px;
+    background-color: #e2e2e2;
+  }
+
 `;
 const StTextarea = styled.textarea`
   width: 100%;

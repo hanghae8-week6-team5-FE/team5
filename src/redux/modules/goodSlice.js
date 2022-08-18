@@ -45,5 +45,8 @@ export const GoodSlice = createSlice({
   },
 });
 
+
 export const { } = GoodSlice.actions;
+export default GoodSlice.reducer;
+export const {} = GoodSlice.actions;
 export default GoodSlice.reducer;
