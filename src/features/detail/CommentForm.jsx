@@ -37,25 +37,26 @@ const CommentForm = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ width: "55vw", display: "Flex", flexDirection: "column", margin: "auto" }}>
       <StyledWriteBox>
-        <form onSubmit={onSubmitHandlr}>
+        <form style={{ width: "55vw", display: "flex", flexDirection: "row", gap: "20px" }} onSubmit={onSubmitHandlr}>
           <StyledInputBox
             type="text"
             spellcheck="false"
             name="comment"
             onChange={onChangeHandler}
           />
-          <Button>추가하기</Button>
+          <StyledBtn>추가하기</StyledBtn>
         </form>
       </StyledWriteBox>
-
-      {comments.map((comment, idx) => {
-        return <Comment key={idx} comment={comment}></Comment>;
-      })}
+      <StyledInputBox_Li>
+        {comments.map((comment, idx) => {
+          return <Comment key={idx} comment={comment}></Comment>;
+        })}</StyledInputBox_Li>
     </div>
   );
 };
+
 export default CommentForm;
 
 const StyledWriteBox = styled.div`
@@ -63,36 +64,39 @@ const StyledWriteBox = styled.div`
 `;
 
 const StyledInputBox = styled.input`
-  color: rgb(144, 200, 247);
-  width: 80%;
+  color: rgb(215, 98, 115);//폰트색
+  width: 47vw;
   padding: 10px;
   border-radius: 20px;
-  border: 2px solid rgb(144, 200, 247);
+ border: 2px solid rgba(215, 98, 115, 30%) ;//댓입력 보더
   background-color: white;
 
   &:focus {
     outline: none;
+    border: 2px solid rgb(215, 98, 115) ;
   }
 `;
 
 const StyledInputBox_Li = styled.li`
   list-style-type: none;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;
+
 
 const StyledBtn = styled.button`
   color: white;
-  border: solid 2px transparent;
-  padding: 5px;
+  border: solid 2px ;
+  padding: px;
   border-radius: 10px;
   margin: 1px;
-  background-color: rgb(144, 200, 247);
+  background-color: rgb(215, 98, 115);
 
   &:hover {
     cursor: pointer;
-    background-color: transparent;
-    color: grey;
-    border: solid 2px rgb(144, 200, 247);
-  }
+    border: solid 2px transparent;
+    background-color: white;
+    color: rgb(215, 98, 115);
+    border: solid 2px white;
+    }
 `;

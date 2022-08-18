@@ -75,65 +75,83 @@ const SignForm = () => {
   };
   return (
     <div>
-      <form onSubmit={onSumitHandler}>
-        <label>아이디생성</label>
-        <StCheckbox>
-          <Input
-            onBlur={() => {
-              nickonBlurHandler(sign.loginId);
-            }}
-            name="loginId"
-            onChange={onchangeHandler}
-            placeholder="🔑아이디"
-            value={sign.loginId}
-          ></Input>
-          {checkdiv ? (
-            <Button>V</Button>
-          ) : (
-            <Button type="button" onClick={CheckIdClickHandler}>
-              아이디중복확인
-            </Button>
-          )}
-        </StCheckbox>
+      <StyLoginForm>
+        <form onSubmit={onSumitHandler}>
+          <h2 style={{
+            width: "550px", height: "5px",
+            margin: "0 auto", backgroundcolor: "rgba( 255, 255, 255, 0.5 )"
+          }}>✨Welcome to Join✨</h2>
+          <label>
+            <p align="left"> UserID </p>
+            <Input
+              onBlur={() => {
+                nickonBlurHandler(sign.loginId);
+              }}
+              name="loginId"
+              onChange={onchangeHandler}
+              placeholder="🔑아이디"
+              value={sign.loginId}
+            ></Input>
+            {checkdiv ? (
+              <Button>V</Button>
+            ) : (
+              <Button type="button" onClick={CheckIdClickHandler}>
+                아이디중복확인
+              </Button>
+            )}
+          </label>
 
-        {nickname ? (
-          <div style={{ color: "red" }}>아이디형식을 맞춰주세요!</div>
-        ) : null}
-        <label>비밀번호</label>
-        <Input
-          value={sign.password}
-          name="password"
-          type="password"
-          placeholder="🔒 비밀번호"
-          onChange={onchangeHandler}
-          onBlur={() => {
-            passwordonBlurHandler(sign.password);
-          }}
-        ></Input>
-        {password ? (
-          <div style={{ color: "red" }}>비밀번호형식을 맞춰주세요!</div>
-        ) : null}
-        <label>비밀번호체크 </label>
-        <Input
-          value={sign.confirm}
-          type="password"
-          name="confirm"
-          onChange={onchangeHandler}
-          placeholder="🔒 비밀번호 확인"
-        ></Input>
-        {sign.password !== sign.confirm ? (
-          <div style={{ color: "red" }}>
-            비밀번호와 비밀번호 재확인 틀립니다
-          </div>
-        ) : null}
+          {nickname ? (
+            <div style={{ color: "red" }}>아이디형식을 맞춰주세요!</div>
+          ) : null}
 
-        <Button>회원가입완료!</Button>
-      </form>
-    </div>
+          <label>
+            <p align="left"> PassWord </p>
+            <Input
+              value={sign.password}
+              name="password"
+              type="password"
+              placeholder="🔒 비밀번호"
+              onChange={onchangeHandler}
+              onBlur={() => {
+                passwordonBlurHandler(sign.password);
+              }}
+            ></Input>
+            {password ? (
+              <div style={{ color: "red" }}>비밀번호형식을 맞춰주세요!</div>
+            ) : null}
+            <label>비밀번호체크 </label>
+            <Input
+              value={sign.confirm}
+              type="password"
+              name="confirm"
+              onChange={onchangeHandler}
+              placeholder="🔒 비밀번호 확인"
+            ></Input>
+          </label>
+
+          {sign.password !== sign.confirm ? (
+            <div style={{ color: "red" }}>
+              비밀번호와 비밀번호 재확인 틀립니다
+            </div>
+          ) : null}
+
+          <Button>회원가입완료!</Button>
+        </form>
+      </StyLoginForm>
+    </div >
   );
 };
-export default SignForm;
-const StCheckbox = styled.div`
-  display: flex;
-  flex-direction: row;
+
+
+const StyLoginForm = styled.div`
+            border-radius: 10px;
+            padding:30px 50px;
+            text-align: center;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%, -50%);
 `;
+
+export default SignForm;

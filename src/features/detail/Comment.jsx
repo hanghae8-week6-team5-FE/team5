@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import Button from "../../ele/Button";
-import Input from "../../ele/Input";
 import { __putComment, __deleteComment } from "../../redux/modules/DetailSlice";
 import { useParams } from "react-router-dom";
 
@@ -36,40 +34,88 @@ const Comment = ({ comment }) => {
   return (
     <div>
       {edit ? (
-        <div>
-          <div>
-            <Input
-              defaultValue={comment.comment}
-              name="comment"
-              onChange={onChangeHandler}
-            ></Input>
-            <Button
-              onClick={() => {
-                onEditHandler();
-                onSubmtHandler();
-              }}
-            >
-              수정완료!
-            </Button>
-          </div>
+        <div style={{ width: "55vw", display: "Flex", flexDirection: "column", margin: "auto" }}>
+          <StyledWriteBox>
+            <div style={{ width: "55vw", display: "flex", flexDirection: "row", gap: "20px" }}>
+              <StyledInputBox
+                defaultValue={comment.comment}
+                name="comment"
+                onChange={onChangeHandler}
+              ></StyledInputBox>
+              <StyledBtn
+                onClick={() => {
+                  onEditHandler();
+                  onSubmtHandler();
+                }}
+              >
+                수정완료!
+              </StyledBtn>
+            </div>
+          </StyledWriteBox>
         </div>
       ) : (
         <div>
-          <p>{comment.comment}</p>
-          <p>{comment.loginId}</p>
-          <p>{comment.date}</p>
+          <ul>
+            <StyledInputBox_Li></StyledInputBox_Li>
+            <StyledInputBox_Li>✨ID: {comment.loginId} ✨Data: {comment.date} </StyledInputBox_Li>
+            <StyledInputBox_Li>🐾댓글: {comment.comment} </StyledInputBox_Li>
+          </ul>
 
-          <Button
+          <StyledBtn
             onClick={() => {
               onEditHandler();
             }}
           >
             수정하기
-          </Button>
-          <Button onClick={onDeleteHandelr}>삭제하기</Button>
+          </StyledBtn>
+          <StyledBtn onClick={onDeleteHandelr}>삭제하기</StyledBtn>
         </div>
       )}
     </div>
   );
 };
 export default Comment;
+
+
+
+const StyledWriteBox = styled.div`
+      width: 100%;
+      `;
+
+const StyledInputBox = styled.input`
+      color: rgb(215, 98, 115);//폰트색
+      width: 47vw;
+      padding: 10px;
+      border-radius: 20px;
+      border: 2px solid rgba(215, 98, 115, 30%) ;//댓입력 보더
+      background-color: white;
+
+      &:focus {
+        outline: none;
+      border: 2px solid rgb(215, 98, 115) ;
+  }
+      `;
+
+const StyledInputBox_Li = styled.li`
+      list-style-type: none;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      `;
+
+
+const StyledBtn = styled.button`
+      color: white;
+      border: solid 2px ;
+      padding: px;
+      border-radius: 10px;
+      margin: 1px;
+      background-color: rgb(215, 98, 115);
+
+      &:hover {
+        cursor: pointer;
+      border: solid 2px transparent;
+      background-color: white;
+      color: rgb(215, 98, 115);
+      border: solid 2px white;
+    }
+      `;

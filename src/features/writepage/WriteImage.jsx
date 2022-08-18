@@ -60,24 +60,32 @@ const WriteImage = () => {
       }
     });
   };
+  const main_list = ["ALL", "중식", "한식", "양식", "치킨", "디저트"];
+  const [mainList, setMainList] = useState(main_list);
+
+
+
   return (
     <div>
       <form onSubmit={onSubmitHandler}>
         <Stwrite>
           <Stselect onChange={onChangeHandler} name="category">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            <option>중식</option>
+            <option>한식</option>
+            <option>양식</option>
+            <option>치킨</option>
+            <option>디저트</option>
           </Stselect>
-          <Input onChange={onChangeHandler} name="title"></Input>
+          <StimgboxTitle>
+            <StInput onChange={onChangeHandler} name="title"></StInput>
+          </StimgboxTitle>
+
           <Stimgbox>
             <Stimg>
               <img src={write.images} alt="등록한이미지"></img>
             </Stimg>
             <div>
-              <Input
+              <StFileBtn
                 accept="image/*"
                 onChange={onChangeImg}
                 name="images"
@@ -88,52 +96,142 @@ const WriteImage = () => {
             </div>
           </Stimgbox>
           <StFormBox>
+            <StLabel>내용작성</StLabel>
             <Stform>
               <StTextarea
                 onChange={onChangeHandler}
                 name="content"
               ></StTextarea>
-              <Button>댓글작성</Button>
             </Stform>
           </StFormBox>
+          <Button>작성완료</Button>
         </Stwrite>
       </form>
     </div>
   );
 };
+const StOne = styled.div`
+  display: flex;
+  width: 100%;
+  margin: auto;
+  align-content: center;
+  justify-content: center;
+  flex-direction: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  background-color: white;
+
+  /* position: relative; */
+`;
 const Stwrite = styled.div`
-  width: 100vw;
-  margin-top: 50px;
-  padding: 50px;
+  max-width: 650px;
+  width: 90%;
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: auto;
+  background-position: center;
+`;
+
+const StLabel = styled.label`
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 10px;
+  align-items: flex-start;
+  width: 100px;
 `;
 const Stselect = styled.select`
   width: 250px;
   height: 30px;
+`;
+
+const StCategoryButtonOutline = styled.div`
+  display: flex;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  /* background-color: blue; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 500px;
+`;
+
+const StInput = styled.input`
+  box-sizing: border-box;
+  margin-left: 10px;
+  height: 46px;
+  width: 500px;
+  outline: none;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 14px;
+  border: 1px solid #eee;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
 `;
 // const Sttitle = styled.div`
 //   height: 100px;
 //   border: 1px solid black;
 // `;
 const Stimgbox = styled.div`
-  height: 300px;
-  display: flex;
-`;
-const Stimg = styled.div`
-  width: 350px;
   height: 200px;
-  border: 1px solid black;
-  margin-right: 50px;
+  display: flex;
+  margin: 20px;
+`;
+
+const StimgboxTitle = styled.div`
+  height: 50px;
+  display: flex;
+  margin: 20px;
+  padding: 5px;
+`;
+
+const Stimg = styled.div`
+  width: 300px;
+  height: 150px;
+  background-color: #e2e2e2;
+  border: 1px solid #c7c7c7;
+  border-radius: 15px;
+  color: #c7c7c7;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 10px;
   & > img {
-    width: 350px;
-    height: 200px;
+    width: 300px;
+    height: 150px;
+    border-radius: 15px;
+    background-color: #e2e2e2;
+  }
+`;
+
+const StFileBtn = styled.input`
+  position: relative;
+  width: 100px;
+  height: 40px;
+  background-color: white;
+  color: white;
+  border: none;
+  font-size: 14px;
+  margin-left: 16px;
+  font-weight: bold;
+  align-self: flex-start;
+  padding-bottom: 5px;
+  &:hover {
+    opacity: 0.7;
   }
 `;
 const StFormBox = styled.div`
-  width: 100vw;
+  width: 60vw;
   display: flex;
   justify-content: center;
   flex-direction: row;
-  padding: 50px;
+  padding: 10px;
 `;
 const Stform = styled.div`
   width: 100%;
@@ -141,7 +239,8 @@ const Stform = styled.div`
   align-items: center;
 `;
 const StTextarea = styled.textarea`
-  width: 70%;
+  width: 100%;
   height: 100px;
+  margin-right: 500px;
 `;
 export default WriteImage;
