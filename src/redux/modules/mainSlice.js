@@ -26,11 +26,10 @@ export const MainSlice = createSlice({
   extraReducers: {
     [__GetList.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
       state.lists = action.payload;
     },
   },
 });
 
-export const {} = MainSlice.actions;
+export const { openList } = MainSlice.actions;
 export default MainSlice.reducer;

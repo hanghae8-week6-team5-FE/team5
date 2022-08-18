@@ -18,6 +18,8 @@ export const __postCheckUser = createAsyncThunk(
       const data = await instance.post(`/login`, payload);
       const token = data.data.token;
       localStorage.setItem("token", token); //토큰 로컬 저장하는부분
+      console.log(jwt_decode(token));
+
       const userId = jwt_decode(token);
 
       return thunkAPI.fulfillWithValue(data.data);
@@ -46,6 +48,7 @@ export const LoginSlice = createSlice({
     },
     [__postCheckUser.rejected]: (state, action) => {
       state.isLoading = false;
+
       window.alert("로그인실패입니다");
     },
   },

@@ -3,9 +3,10 @@ import login from "../modules/loginSlice";
 import sign from "../modules/signSlice";
 import write from "../modules/writeSlice";
 import main from "../modules/mainSlice";
+import detail from "../modules/DetailSlice";
 
 const store = configureStore({
-  reducer: { login, sign, write, main },
+  reducer: { login, sign, write, main, detail },
 });
 
 export default store;
