@@ -10,7 +10,9 @@ const MainList = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { lists } = useSelector((state) => state.main);
-  const main_list = ["ALL", "1", "2", "3", "4", "5"];
+  const main_list = ["ALL", "1", "2", "3", "4"];
+  const why = main_list.splice(1, 5, "한식", "중식", "양식", "치킨", "디저트");
+  console.log(main_list);
   const [mainList, setMainList] = useState(main_list);
   const [newList, setNewList] = useState(lists);
   console.log(lists);
@@ -21,6 +23,7 @@ const MainList = (props) => {
     } else {
       const filterData = lists.filter((menu) => menu.category === e.target.id);
       setNewList(filterData);
+      console.log(filterData);
     }
   };
   useEffect(() => {
@@ -82,9 +85,8 @@ const MainList = (props) => {
 export default MainList;
 
 const StOne = styled.div`
-  font-family: "BMHANNAPro";
   display: flex;
-  width: 90%;
+  width: 100%;
   margin: auto;
   align-content: center;
   justify-content: center;
@@ -133,6 +135,7 @@ const StContainerBackside = styled.div`
   gap: 20px;
   align-content: flex-start;
   /* position: absolute; */
+  align-items: center;
 `;
 
 const StbtnStyle = styled.button`

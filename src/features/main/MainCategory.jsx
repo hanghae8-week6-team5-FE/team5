@@ -12,7 +12,8 @@ const MainCategory = ({ list }) => {
   };
 
   const { title, images, postId, loginId } = list;
-  console.log(title);
+  // console.log(title);
+  // console.log(images);
   return (
     <StListOutline>
       <StList
@@ -27,22 +28,22 @@ const MainCategory = ({ list }) => {
           src={images}
           alt="사진"
         />
-        <CommentWrap>
+        <StTextBox>
           <StInnerText>{title}</StInnerText>
           <StNickname>{loginId}</StNickname>
-        </CommentWrap>
-        <CommentWrap>
+        </StTextBox>
+        <StTextBox>
           <StlikeBtn sre={likeBtn} />
-        </CommentWrap>
+        </StTextBox>
       </StList>
     </StListOutline>
   );
 };
 
 const StListOutline = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: #ddd;
+  width: 90%;
+  height: 90%;
+  background-color: white;
   border-radius: 10px;
   display: flex;
   margin: 30px 20px 30px;
@@ -62,15 +63,15 @@ const StList = styled.div`
   height: 300px;
   margin: auto;
   margin-top: 10px;
-  background-color: #ddd;
+  background-color: white;
   border-radius: 20px;
-  cursor: pointer;
+  /* cursor: pointer;
   &:hover {
     border: 5px solid transparent;
-  }
+  } */
 `;
 
-const StPostImg = styled.div`
+const StPostImg = styled.img`
   width: 100%;
   height: 70%;
   background-color: #ddd;
@@ -120,10 +121,10 @@ const StImage = styled.div`
   background-size: cover;
 `;
 
-const CommentWrap = styled.div`
+const StTextBox = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: right;
   background-color: white;
   width: 300px;
 `;
@@ -133,6 +134,7 @@ const StlikeBtn = styled.img`
   height: auto;
   opacity: 0.6;
   background-color: red;
+  justify-content: right;
 `;
 
 export default MainCategory;
