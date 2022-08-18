@@ -49,11 +49,11 @@
     * LoginForm.jsx
   * main
     * MainList.jsx
+    * MainCategory.jsx
   * sign
     * SignForm.jsx
   * writepage
-    * WriteAdd.jsx
-    * WriteForm.jsx
+    *writeImage.jsx
     
 * **pages**
   * Detail.jsx
@@ -64,6 +64,14 @@
 
 * **redux**
   * modules
+    *deatilSlice.jsx
+    *loginSlice.jsx
+    *mainSlice.jsx
+    *signSlice.jsx
+    *writeSlice.jsx
+    *goodslice.jsx
+   
     * configs
       * configStore.js
+    
       
