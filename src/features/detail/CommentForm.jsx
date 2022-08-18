@@ -11,8 +11,8 @@ const CommentForm = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { comments } = useSelector((state) => state.detail);
-
-  console.log(comments);
+  const [newcomment, Setnewcomment] = useState(comments);
+  console.log(newcomment);
 
   const [comment, Setcomment] = useState({
     comment: "",
@@ -31,6 +31,9 @@ const CommentForm = () => {
 
   useEffect(() => {
     dispatch(__getComment(id));
+  }, []);
+  useEffect(() => {
+    Setcomment(comments.comment);
   }, []);
 
   return (

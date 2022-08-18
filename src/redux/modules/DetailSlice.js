@@ -95,7 +95,7 @@ export const __putComment = createAsyncThunk(
     console.log(commentid);
     try {
       const data = await instance.put(`/comment/${commentid}`, comments);
-      return thunkAPI.fulfillWithValue(comments);
+      return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       if (error.response.data.ok == false) {
         alert(`${error.response.data.errorMessage}`);
@@ -183,10 +183,15 @@ export const DetailSlice = createSlice({
       state.loading = true;
     },
     [__putComment.fulfilled]: (state, action) => {
-      state.isLoading = false;
       console.log(action.payload);
-      state.comments.push(action.payload);
-      console.log(state.payload);
+      state.isLoading = false;
+      const target = state.comments.findIndex(
+        (comment) => comment.commentId === action.payload.request.commentId
+      );
+      state.comments.splice(target, 1, action.payload.request);
+      // state.comments.push(action.payload);
+
+      // console.log(state.payload);
     },
     [__putComment.rejected]: (state, action) => {
       state.isLoading = false;
@@ -198,6 +203,7 @@ export const DetailSlice = createSlice({
       state.isLoading = false;
       // state.comments = action.payload;
       console.log(action.payload);
+
       const target = state.comments.findIndex(
         (comment) => comment.commentId === action.payload
       );
